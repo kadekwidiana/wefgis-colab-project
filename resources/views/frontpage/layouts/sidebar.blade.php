@@ -18,13 +18,13 @@
         <div class="col-md-6">
             <div class="basemap-options">
                 <label>
-                    <img src="assets/icons/icon-basemap/openstreetmap_blackandwhite.png" alt="OpenStreetMap"
+                    <img src="frontpage/assets/icons/icon-basemap/openstreetmap_blackandwhite.png" alt="OpenStreetMap"
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="openStreetMap">
                     OSM
                 </label>
                 <label>
-                    <img src="assets/icons/icon-basemap/google-streets.png" alt="GoogleStreetMap"
+                    <img src="frontpage/assets/icons/icon-basemap/google-streets.png" alt="GoogleStreetMap"
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="googleStreetMap">
                     Street
@@ -36,13 +36,13 @@
         <div class="col-md-6">
             <div class="basemap-options">
                 <label>
-                    <img src="assets/icons/icon-basemap/here_satelliteday.png" alt="Satellite "
+                    <img src="frontpage/assets/icons/icon-basemap/here_satelliteday.png" alt="Satellite "
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="satelliteMap">
                     G-Satelite
                 </label>
                 <label>
-                    <img src="assets/icons/icon-basemap/google-hibrid.png" alt="Satellite "
+                    <img src="frontpage/assets/icons/icon-basemap/google-hibrid.png" alt="Satellite "
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="googleHibridMap" checked>
                     Hibrid
@@ -52,7 +52,7 @@
         <div class="col-md-6">
             <div class="basemap-options">
                 <label>
-                    <img src="assets/icons/icon-basemap/google-terrain.png" alt="Terain "
+                    <img src="frontpage/assets/icons/icon-basemap/google-terrain.png" alt="Terain "
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="googleTerrain">
                     Terrain
@@ -62,7 +62,7 @@
         <div class="col-md-6">
             <div class="basemap-options">
                 <label>
-                    <img src="assets/icons/icon-basemap/google-traffic.png" alt="Traffic "
+                    <img src="frontpage/assets/icons/icon-basemap/google-traffic.png" alt="Traffic "
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="googleTraffic">
                     Traffic
@@ -74,13 +74,13 @@
         <div class="col-md-6">
             <div class="basemap-options">
                 <label>
-                    <img src="assets/icons/icon-basemap/esri-street.png" alt="Esri"
+                    <img src="frontpage/assets/icons/icon-basemap/esri-street.png" alt="Esri"
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="esriWorldStreetMap">
                     Esri Street
                 </label>
                 <label>
-                    <img src="assets/icons/icon-basemap/topo-map.png" alt="OpenTopoMap"
+                    <img src="frontpage/assets/icons/icon-basemap/topo-map.png" alt="OpenTopoMap"
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="openTopoMap">
                     TopoMap
@@ -92,13 +92,13 @@
         <div class="col-md-6">
             <div class="basemap-options mb-4">
                 <label>
-                    <img src="assets/icons/icon-basemap/esri-satelite.png" alt="Esri "
+                    <img src="frontpage/assets/icons/icon-basemap/esri-satelite.png" alt="Esri "
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="esriSatelite">
                     E-Satelite
                 </label>
                 <label>
-                    <img src="assets/icons/icon-basemap/google-earth.png" alt="Thunderforest "
+                    <img src="frontpage/assets/icons/icon-basemap/google-earth.png" alt="Thunderforest "
                         class="img-fluid custom-image-basemap">
                     <input class="form-check-input" type="radio" name="basemap" value="googleEarth">
                     Earth
@@ -819,62 +819,72 @@
             <p class="bg-secondary p-2 m-0 rounded-top fw-bold text-white">Crop Legend</p>
             <div class="p-2">
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/corn.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/corn.png" alt="">
                     Corn
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/paddy.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/paddy.png"
+                        alt="">
                     Paddy
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/baresoil.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/baresoil.png"
+                        alt="">
                     Baresoil
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/cassava.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/cassava.png"
+                        alt="">
                     Cassava
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/eucalyptus.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/eucalyptus.png"
+                        alt="">
                     Eucalyptus
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/forest.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/forest.png"
+                        alt="">
                     Forest
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/grassland.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/grassland.png"
+                        alt="">
                     Grassland
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/palm.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/palm.png" alt="">
                     Palm
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/rubber.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/rubber.png"
+                        alt="">
                     Rubber
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/gedung.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/gedung.png"
+                        alt="">
                     Building
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/sugarcan.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/sugarcan.png"
+                        alt="">
                     Sugarcane
                     </label>
                 </div>
                 <div class="">
-                    <img class="rounded float-left" src="assets/icons/icon-marker/water.png" alt="">
+                    <img class="rounded float-left" src="frontpage/assets/icons/icon-marker/water.png"
+                        alt="">
                     Water
                     </label>
                 </div>

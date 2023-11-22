@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #8b5cf6;">
     <div class="container">
         <a class="navbar-brand font-logo text-white d-flex align-items-center fw-bold" href="#"><img
-                src="{{ asset('assets/icons/icon_web_wefgis.png') }}" alt="" style="width: 30px;">WEF GIS</a>
+                src="{{ asset('frontpage/assets/icons/icon_web_wefgis.png') }}" alt="" style="width: 30px;">WEF
+            GIS</a>
 
         <div class="dflex">
 
