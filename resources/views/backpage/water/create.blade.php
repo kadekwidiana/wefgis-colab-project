@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <form action="{{ route('water.store') }}" method="POST">
+        <form action="{{ route('water.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- best seller & traffic -->
             <div id="form-section1" class="grid grid-cols-2 lg:grid-cols-1 gap-5 mt-2">
@@ -166,7 +166,7 @@
                             <label for="photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
                             </label>
-                            <input type="text" id="photo" name="photo"
+                            <input type="file" id="photo" name="photo"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Photo" required>
                         </div>
@@ -174,7 +174,7 @@
                             <label for="related_photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
                             </label>
-                            <input type="text" id="related_photo" name="related_photo"
+                            <input type="file" id="related_photo" name="related_photo"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Related Photo" required>
                         </div>

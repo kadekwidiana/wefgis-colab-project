@@ -56,7 +56,7 @@ class WaterController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             // 'water_id' => 1,
             'regency_id' => 'required|exists:regencies,regency_id',
             'lu_id' => 'required|exists:land_uses,lu_id',
@@ -70,13 +70,20 @@ class WaterController extends Controller
             'aoi' => 'required',
             'status_area' => 'required|in:private,public',
             'ownership' => 'required|max:45',
-            'photo' => 'required|max:100',
+            'photo' => 'required',
             'permanence' => 'required|max:100',
             'description' => 'required',
             'related_photo' => 'required',
         ]);
 
-        Water::create($request->all());
+        if ($request->file('photo')){
+            $data['photo']= $request->file('photo')->store('water-photo');
+        }
+        if ($request->file('related_photo')){
+            $data['related_photo']= $request->file('related_photo')->store('water-related-photo');
+        }
+
+        Water::create($data);
 
         return redirect()->route('water.index')->with('success', 'Water area created successfully.');
     }
