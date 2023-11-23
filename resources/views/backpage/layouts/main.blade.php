@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <link rel="shortcut icon" href="./img/fav.png" type="image/x-icon">   --}}
     <link rel="icon" href="{{ asset('frontpage/assets/icons/icon_web_wefgis.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('backpage/css/style.css') }}">
     <title>Admin | WefGIS</title>
+
 
     <!-- css leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -209,6 +211,7 @@
             });
         });
     </script>
+    @stack('addon-script')
 </body>
 
 </html>

@@ -11,6 +11,7 @@ class Spatial extends Model
 
     protected $table = 'spatials';
     protected $primaryKey = 'sp_id';
+    
     protected $fillable = ['group_id', 'name', 'url', 'attribute', 'description'];
 
     public function spatialGroup()
