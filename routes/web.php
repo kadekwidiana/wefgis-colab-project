@@ -3,6 +3,7 @@
 use App\Http\Controllers\CropChacoengsaoController;
 use App\Http\Controllers\NakhonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SpatialController;
 use App\Http\Controllers\WaterController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,14 +34,15 @@ require __DIR__ . '/auth.php';
 // view frontpage
 Route::get('/', [CropChacoengsaoController::class, 'index'])->name('index');
 
+
 Route::get('/pointCrop', [CropChacoengsaoController::class, 'pointCrop'])->name('json-crop');
 // GEE
 Route::get('/wateroccurence', [CropChacoengsaoController::class, 'waterOccurrence'])->name('waterOccurrence');
-Route::post('/precipitation',[CropChacoengsaoController::class, 'precipitation'])->name('precipitation');
-Route::post('/vci',[CropChacoengsaoController::class, 'vci'])->name('vci');
-Route::post('/evi',[CropChacoengsaoController::class, 'evi'])->name('evi');
+Route::post('/precipitation', [CropChacoengsaoController::class, 'precipitation'])->name('precipitation');
+Route::post('/vci', [CropChacoengsaoController::class, 'vci'])->name('vci');
+Route::post('/evi', [CropChacoengsaoController::class, 'evi'])->name('evi');
 // phenology crop
-Route::post('/phenology_crop',[CropChacoengsaoController::class, 'phenology_crop'])->name('phenology_crop');
+Route::post('/phenology_crop', [CropChacoengsaoController::class, 'phenology_crop'])->name('phenology_crop');
 
 // GEE Nakhon Pathom
 Route::get('/nakhonwater', [CropChacoengsaoController::class, 'nakhonWater'])->name('nakhonWater');
@@ -53,6 +55,8 @@ Route::get('/dashboard', function () {
 });
 
 Route::resource('/water', WaterController::class);
+
+route::resource('/spatial', SpatialController::class);
 // get altitude & get address
 Route::post('/get-altitude', [WaterController::class, 'getAltitude']);
 Route::post('/get-address', [WaterController::class, 'getAddress']);

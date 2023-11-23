@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('backpage/css/style.css') }}">
     <title>Admin | WefGIS</title>
 
+
     <!-- css leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -41,6 +42,7 @@
     <!-- end wrapper -->
     <!-- script -->
     <script src="{{ asset('backpage/js/scripts.js') }}"></script>
+    @stack('addon-script')
 </body>
 
 </html>
