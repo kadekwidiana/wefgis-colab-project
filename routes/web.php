@@ -53,3 +53,6 @@ Route::get('/dashboard', function () {
 });
 
 Route::resource('/water', WaterController::class);
+// get altitude & get address
+Route::post('/get-altitude', [WaterController::class, 'getAltitude']);
+Route::post('/get-address', [WaterController::class, 'getAddress']);
