@@ -14,8 +14,8 @@ class WaterController extends Controller
 {
     public function index()
     {
-        $water = Water::all();
-        return view('backpage.water.index', compact('water'));
+        $waters = Water::all();
+        return view('backpage.water.index', compact('waters'));
     }
 
     public function getAltitude(Request $request)
@@ -132,7 +132,7 @@ class WaterController extends Controller
     }
 
     public function destroy($id)
-    {
+    {   
         $water = Water::findOrFail($id);
         $water->delete();
 

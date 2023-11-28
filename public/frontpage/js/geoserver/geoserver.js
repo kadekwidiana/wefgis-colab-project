@@ -65,7 +65,7 @@ function addWMSToMap(url, layerName, targetLayer) {
 
 // Call func for WMS layer on layer
 // CHACHOENGSAO PROVINCE
-addWMSToMap(`${baseUrlGeo}/chachoengsao/wms`, 'chachoengsao:prov_chachoengsao', chachoengsao_prov);
+addWMSToMap(`http://geoserver.wefgis-sync.com:8585/geoserver/topp/wms`, 'topp:states', chachoengsao_prov);
 // PHICHIT PROVINCE
 // polygon and polyline
 addWMSToMap(`${baseUrlGeo}/nakhon_poly/wms`, 'nakhon_poly:admin', admin_phichit);

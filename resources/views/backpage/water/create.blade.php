@@ -157,24 +157,41 @@
                             <label for="status_area"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Status Area
                             </label>
-                            <input type="text" id="status_area" name="status_area"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Status Area" required>
+                            <div class="flex">
+                                <div class="flex items-center me-4">
+                                    <input id="inline-radio" type="radio" value="private" name="status_area"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="inline-radio"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Private</label>
+                                </div>
+                                <div class="flex items-center me-4">
+                                    <input id="inline-radio" type="radio" value="public" name="status_area"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="inline-radio"
+                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Public</label>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="mb-3">
                             <label for="photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
                             </label>
+                            <img class="img-preview1 img-fluid mb-3 col-sm-5">
                             <input type="file" id="photo" name="photo"
+                                onchange="previewImage('#photo', '.img-preview1')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Photo" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="related_photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
                             </label>
+                            <img class="img-preview2 img-fluid mb-3 col-sm-5">
                             <input type="file" id="related_photo" name="related_photo"
+                                onchange="previewImage('#related_photo', '.img-preview2')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Related Photo" required>
                         </div>
@@ -363,6 +380,16 @@
     {{-- IMPORT SCRIPT --}}
     @include('backpage.package.package-js')
     <script>
+        function previewImage(img, preview) {
+            const image = document.querySelector(img);
+            const imgPreview = document.querySelector(preview);
+            imgPreview.style.display = 'block';
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
         // Func Stepper
         function showSection3() {
             $('#form-section3').show();
@@ -450,7 +477,7 @@
         // Add the custom zoom control to the map
         map.addControl(customZoomControl);
 
-        var baseMaps = {
+        var baseMaps = {    
             "OpenStreetMap": openStreetMap,
             "Google Satelite": satelliteMap,
             "Google Hibrid": googleHibridMap,

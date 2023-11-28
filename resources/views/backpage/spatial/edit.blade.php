@@ -27,7 +27,6 @@
                                     <option value="{{ old('Select Group', $spatialGroup->group_id) }}" >{{ $spatialGroup->name }}</option>
                                 @endforeach
                                 
-                                
                                 <!-- Add more options as needed -->
                             </select>
                         </div>
