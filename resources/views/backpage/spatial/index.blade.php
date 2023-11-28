@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- button modal pop up --}}
-    <div>
+    {{-- <div>
         <button id="modalButton" class="btn hidden" onclick="openModal()">Open Modal</button>
         <!-- Modal -->
         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
@@ -11,13 +11,29 @@
                 <p class="py-4" id="modalMessage">Press ESC key or click the button below to close</p>
                 <div class="modal-action">
                     <form method="dialog">
+                        <button class="btn items-end" onclick="closeModal()">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </div> --}}
+
+    <div>
+        <button id="modalButton" class="btn hidden" onclick="openModal()">Open Modal</button>
+        <!-- Modal -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Succes</h3>
+                <p class="py-4" id="modalMessage">Data berhasil di buat</p>
+                <div class="modal-action flex justify-end"> <!-- Tambahkan class "flex justify-end" -->
+                    <form method="dialog">
                         <button class="btn" onclick="closeModal()">Close</button>
                     </form>
                 </div>
             </div>
         </dialog>
     </div>
-    
+
 
     <!-- strat content -->
     <div class="bg-gray-100 flex-1 p-6 md:mt-16">
@@ -45,12 +61,14 @@
                             <th class="px-4 py-2 text-center">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600">
+                    <tbody class="text-gray-600 overflow-hidden">
                         @foreach ($spatials as $spatial)
-                            <tr>
+                            <tr >
                                 <td class="border border-l-0 px-4 py-2">{{ $spatial->group_id }}</td>
-                                <td class="border border-l-0 px-4 py-2">{{ $spatial->name }}</td>
-                                <td class="border border-l-0 px-4 py-2">{{ $spatial->url }}</td>
+                                <td class="border border-l-0 px-4 py-2">
+                                    <a href="{{ route('spatial.show', $spatial->sp_id) }}">{{ $spatial->name }}</a>
+                                </td>
+                                <td class="border border-l-0 px-4 py-2 max-w-xs break-all">{{ $spatial->url }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $spatial->attribute }}</td>
                                 <td class="border border-l-0  px-4 py-2">{{ $spatial->description }}</td>
                                 <td class="border border-l-0 border-r-0 px-4 py-2">
@@ -59,11 +77,14 @@
                                         <a href="{{ route('spatial.edit', $spatial->sp_id) }}">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a href="/spatial">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
+                                        <form id="deleteForm" action="{{ route('spatial.destroy', $spatial->sp_id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class=" p-2" onclick="showDeleteConfirmationModal()"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
                                     </div>
-
                                 </td>
                             </tr>
                         @endforeach
@@ -77,7 +98,18 @@
         </div>
         <!-- end quick Info -->
 
-
+        {{-- confirmation box --}}
+        <div id="deleteConfirmationModal"
+            class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 z-50 justify-center items-center">
+            <div class="bg-white p-8 rounded shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Delete Confirmation</h2>
+                <p class="mb-4">Are you sure you want to delete this data?</p>
+                <div class="flex justify-end">
+                    <button id="confirmBtn" class="bg-red-500 text-white px-4 py-2 rounded mr-2">Delete</button>
+                    <button id="cancelBtn" class="bg-gray-400 text-white px-4 py-2 rounded">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- end content -->
 @endsection
@@ -108,5 +140,30 @@
             // If no success message, hide the modal button
             modalButton.setAttribute('hidden', true);
         }
+
+        // Fungsi untuk menampilkan modal
+        function showDeleteConfirmationModal() {
+            let modal = document.getElementById('deleteConfirmationModal');
+            modal.classList.remove('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dapatkan tombol-tombol di dalam modal
+            let confirmBtn = document.getElementById('confirmBtn');
+            let cancelBtn = document.getElementById('cancelBtn');
+            let deleteForm = document.getElementById('deleteForm');
+            let modal = document.getElementById('deleteConfirmationModal');
+
+            // Tambahkan event listener untuk tombol-tombol
+            confirmBtn.addEventListener('click', function() {
+                // Submit formulir saat tombol Delete di dalam modal diklik
+                deleteForm.submit();
+            });
+
+            cancelBtn.addEventListener('click', function() {
+                // Sembunyikan modal saat tombol Cancel di dalam modal diklik
+                modal.classList.add('hidden');
+            });
+        });
     </script>
 @endpush
