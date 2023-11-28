@@ -20,33 +20,47 @@
                     <thead>
                         <tr>
                             <th class="px-4 py-2 border-r">No</th>
-                            <th class="px-4 py-2 border-r">product</th>
-                            <th class="px-4 py-2 border-r">price</th>
-                            <th class="px-4 py-2 border-r">date</th>
-                            <th class="px-4 py-2">date</th>
+                            <th class="px-4 py-2 border-r">Name</th>
+                            <th class="px-4 py-2 border-r">Regency</th>
+                            <th class="px-4 py-2 border-r">Photo</th>
+                            <th class="px-4 py-2 border-r">Status</th>
+                            <th class="px-4 py-2 border-r">Description</th>
+                            <th class="px-4 py-2 text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600">
+                        @php
+                            $no = 1;
+                        @endphp
+                        @foreach ($waters as $water)
+                            <tr>
+                                <td class="border border-l-0 px-4 py-2">{{ $no++ }}</td>
+                                <td class="border border-l-0 px-4 py-2">{{ $water->name }}</td>
+                                <td class="border border-l-0 px-4 py-2">{{ $water->regency->regency }},
+                                    {{ $water->regency->province }}</td>
+                                <td class="border border-l-0 px-4 py-2"><img src="{{ asset('storage/' . $water->photo) }}"
+                                        width="200" alt=""></td>
+                                <td class="border border-l-0 px-4 py-2">{{ $water->status_area }}</td>
+                                <td class="border border-l-0 px-4 py-2">{{ $water->description }}</td>
+                                <td class="border border-l-0 border-r-0 px-4 py-2">
 
-                        <tr>
-                            <td class="border border-l-0 px-4 py-2">1</td>
-                            <td class="border border-l-0 px-4 py-2">Lightning to USB-C Adapter Lightning.</td>
-                            <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                            <td class="border border-l-0 px-4 py-2"><span class="num-2"></span>
-                                minutes ago</td>
-                            <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span>
-                                minutes ago</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-l-0 px-4 py-2">2</td>
-                            <td class="border border-l-0 px-4 py-2">Apple iPhone 8.</td>
-                            <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                            <td class="border border-l-0 px-4 py-2"><span class="num-2"></span>
-                                minutes ago</td>
-                            <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span>
-                                minutes ago</td>
-                        </tr>
+                                    <div class="flex justify-center items-center gap-2">
+                                        <a href="{{ route('water.edit', $water->water_id) }}">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <form action="{{ route('water.destroy', $water->water_id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                onclick="return confirm('Do you want to delete this data?')"><i
+                                                    class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
 
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
