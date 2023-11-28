@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Spatial;
 use App\Models\SpatialGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class SpatialController extends Controller
 {
@@ -42,8 +43,8 @@ class SpatialController extends Controller
             [
                 'group_id' => 'required|exists:spatial__groups,group_id',
                 'name' => 'required|max:255',
-                'url' => 'required',
-                'attribute' => 'required|max:255',
+                'url' => 'required|max:255',
+                'attribute' => 'required|max:50',
                 'description' => 'required|max:255',
             ]
         );
@@ -60,7 +61,9 @@ class SpatialController extends Controller
      */
     public function show($id)
     {
-        return view('backpage.spatial.detail');
+        $spatial = Spatial::findOrFail($id);
+
+        return view('backpage.spatial.detail', compact('spatial'));
     }
 
     /**
@@ -85,24 +88,18 @@ class SpatialController extends Controller
      */
     public function update(Request $request, $sp_id)
     {
-        // $berita = Berita::where('slug', $slug)->first();
-        $spatial = Spatial::where('sp_id', $sp_id)->first();
-
-        $rules = [
+        $request->validate([
             'group_id' => 'required|exists:spatial__groups,group_id',
             'name' => 'required|max:255',
-            'url' => 'required',
+            'url' => 'required|max:255',
             'attribute' => 'required|max:255',
             'description' => 'required|max:255',
-        ];
-        $validatedData = $request->validate($rules);
+        ]);
+        $spatial = Spatial::findOrFail($sp_id);
+        $spatial->update($request->all());
 
-
-
-        // Perbarui data berita
-        $spatial->update($validatedData);
-
-        return redirect('/spatial')->with('success', 'Berita berhasil diedit');
+        
+        return redirect()->route('spatial.index')->with('success', 'Spatial updated successfully.');
     }
 
     /**
@@ -113,6 +110,8 @@ class SpatialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $spatial = Spatial::findOrFail($id);
+        $spatial->delete();
+        return redirect()->route('spatial.index')->with('success', 'Spatial deleted successfully.');
     }
 }

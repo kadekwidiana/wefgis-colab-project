@@ -37,7 +37,7 @@
         {{-- content --}}
         @yield('content')
 
-
+        
     </div>
     <!-- end wrapper -->
     <!-- script -->
