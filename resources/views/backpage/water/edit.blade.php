@@ -170,7 +170,7 @@
                             <img class="img-preview1 img-fluid mb-3 col-sm-5">
                             <input type="file" id="photo" name="photo"
                                 onchange="previewImage('#photo', '.img-preview1')"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light "
                                 placeholder="Photo" required value="{{ $water->photo }}">
                         </div>
 
@@ -374,16 +374,42 @@
     {{-- IMPORT SCRIPT --}}
     @include('backpage.package.package-js')
     <script>
-        function previewImage(img, preview) {
-            const image = document.querySelector(img);
+        // function previewImage(img, preview) {
+        //     const image = document.querySelector(img);
+        //     const imgPreview = document.querySelector(preview);
+        //     imgPreview.style.display = 'block';
+        //     const oFReader = new FileReader();
+        //     oFReader.readAsDataURL(image.files[0]);
+        //     oFReader.onload = function(oFREvent) {
+        //         imgPreview.src = oFREvent.target.result;
+        //     }
+        // }
+
+        function previewImage(input, preview) {
+            const image = document.querySelector(input);
             const imgPreview = document.querySelector(preview);
             imgPreview.style.display = 'block';
+
             const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
+
             oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
+            };
+
+            oFReader.onerror = function(oFREvent) {
+                console.error("Error reading file:", oFREvent.target.error);
+                // Handle the error as needed.
+            };
+
+            if (image.files.length > 0) {
+                // Jika ada berkas yang dipilih, tampilkan pratinjau
+                oFReader.readAsDataURL(image.files[0]);
+            } else {
+                // Jika tidak ada berkas yang dipilih, gunakan sumber gambar yang sudah ada
+                imgPreview.src = 'URL_GAMBAR_DEFAULT'; // Ganti dengan URL gambar default atau URL gambar yang sudah ada.
             }
         }
+
         // Func Stepper
         function showSection3() {
             $('#form-section3').show();
