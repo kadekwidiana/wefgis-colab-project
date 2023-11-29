@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CropChachoengsao;
+use App\Models\Spatial;
+use App\Models\SpatialGroup;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -13,7 +15,13 @@ class CropChacoengsaoController extends Controller
     public function index()
     {
         $results = CropChachoengsao::all();
-        return view('frontpage.maps', compact('results'));
+        $spatials = Spatial::all();
+        $spatialGroups = SpatialGroup::all();
+        return view('frontpage.maps', compact([
+            'results',
+            'spatials',
+            'spatialGroups'
+        ]));
     }
 
     public function pointCrop()

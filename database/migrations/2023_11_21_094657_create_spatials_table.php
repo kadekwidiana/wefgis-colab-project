@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('sp_id');
             $table->unsignedBigInteger('group_id'); 
             $table->foreign('group_id')->references('group_id')->on('spatial__groups');
+            $table->string('title', 45);
             $table->string('name', 45);
             $table->string('url', 100);
             $table->string('attribute', 100); 

@@ -42,6 +42,7 @@ class SpatialController extends Controller
         $request->validate(
             [
                 'group_id' => 'required|exists:spatial__groups,group_id',
+                'title' => 'required|max:255',
                 'name' => 'required|max:255',
                 'url' => 'required|max:255',
                 'attribute' => 'required|max:50',

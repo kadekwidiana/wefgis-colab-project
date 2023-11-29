@@ -10,19 +10,19 @@ function createCustomIcon(iconUrl) {
 }
 
 // Define icons with use the func createCustomIcon
-const baresoilIcon = createCustomIcon('assets/icons/icon-marker/baresoil.png');
-const cassavaIcon = createCustomIcon('assets/icons/icon-marker/cassava.png');
-const cropIcon = createCustomIcon('assets/icons/icon-marker/corn.png');
-const eucalyptusIcon = createCustomIcon('assets/icons/icon-marker/eucalyptus.png');
-const forestIcon = createCustomIcon('assets/icons/icon-marker/forest.png');
-const grasslandIcon = createCustomIcon('assets/icons/icon-marker/grassland.png');
-const paddyIcon = createCustomIcon('assets/icons/icon-marker/paddy.png');
-const palmIcon = createCustomIcon('assets/icons/icon-marker/palm.png');
-const rubberIcon = createCustomIcon('assets/icons/icon-marker/rubber.png');
-const settlementIcon = createCustomIcon('assets/icons/icon-marker/gedung.png');
-const sugarcaneIcon = createCustomIcon('assets/icons/icon-marker/sugarcan.png');
-const waterIcon = createCustomIcon('assets/icons/icon-marker/water.png');
-const cornIcon = createCustomIcon('assets/icons/icon-marker/corn.png');
+const baresoilIcon = createCustomIcon('frontpage/assets/icons/icon-marker/baresoil.png');
+const cassavaIcon = createCustomIcon('frontpage/assets/icons/icon-marker/cassava.png');
+const cropIcon = createCustomIcon('frontpage/assets/icons/icon-marker/corn.png');
+const eucalyptusIcon = createCustomIcon('frontpage/assets/icons/icon-marker/eucalyptus.png');
+const forestIcon = createCustomIcon('frontpage/assets/icons/icon-marker/forest.png');
+const grasslandIcon = createCustomIcon('frontpage/assets/icons/icon-marker/grassland.png');
+const paddyIcon = createCustomIcon('frontpage/assets/icons/icon-marker/paddy.png');
+const palmIcon = createCustomIcon('frontpage/assets/icons/icon-marker/palm.png');
+const rubberIcon = createCustomIcon('frontpage/assets/icons/icon-marker/rubber.png');
+const settlementIcon = createCustomIcon('frontpage/assets/icons/icon-marker/gedung.png');
+const sugarcaneIcon = createCustomIcon('frontpage/assets/icons/icon-marker/sugarcan.png');
+const waterIcon = createCustomIcon('frontpage/assets/icons/icon-marker/water.png');
+const cornIcon = createCustomIcon('frontpage/assets/icons/icon-marker/corn.png');
 
 // Layer grup every type crop
 const cassava = L.layerGroup();
