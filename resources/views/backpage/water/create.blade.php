@@ -1,5 +1,7 @@
 @extends('backpage.layouts.main')
-
+@push('addon-style')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
     <!-- strat content -->
     <div class="bg-gray-100 flex-1 p-6 md:mt-16">
@@ -49,15 +51,22 @@
         <form action="{{ route('water.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- best seller & traffic -->
-            <div id="form-section1" class="grid grid-cols-2 lg:grid-cols-1 gap-5 mt-2">
+            <div id="form-section1" class="grid grid-cols-3 lg:grid-cols-1 gap-5 mt-2">
                 <div class="card">
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Name
                             </label>
                             <input type="text" id="name" name="name"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Name" required>
+                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('name')
+                                     border-red-500
+                                @enderror"
+                                placeholder="Name" value="{{ old('name') }}">
+                            @error('name')
+                                <div>
+                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="regency_id"
@@ -79,7 +88,7 @@
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
                                 <input type="text" id="latitude" name="latitude"
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Latitude" required>
+                                    placeholder="Latitude" required value="{{ old('latitude') }}">
                             </div>
 
                             <div class="flex-1 mb-3">
@@ -87,7 +96,7 @@
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
                                 <input type="text" id="longitude" name="longitude"
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Longitude" required>
+                                    placeholder="Longitude" required value="{{ old('longtitude') }}">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -96,7 +105,7 @@
                             </label>
                             <input type="text" id="altitude" name="altitude"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Altitude" required>
+                                placeholder="Altitude" required value="{{ old('altitude') }}">
                         </div>
                         <div class="mb-3">
                             <label for="address"
@@ -104,7 +113,7 @@
                             </label>
                             <textarea name="address" id="address" cols="10" rows="2"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Address"></textarea>
+                                placeholder="Address">{{ Request::old('address') }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="aoi"
@@ -112,7 +121,7 @@
                             </label>
                             <textarea name="aoi" id="aoi" cols="10" rows="3"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Geometry"></textarea>
+                                placeholder="Geometry" value="{{ old('aoi') }}">{{ Request::old('aoi') }}</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -121,7 +130,7 @@
                             </label>
                             <input type="text" id="wide" name="wide"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Wide" required>
+                                placeholder="Wide" required value="{{ old('wide') }}">
                         </div>
 
                         {{-- <div class="flex justify-end space-x-4">
@@ -133,7 +142,7 @@
                     </div>
                 </div>
                 {{-- maps display --}}
-                <div class="card" id="map" style="z-index: 2;">
+                <div class="card col-span-2" id="map" style="z-index: 2;">
                     <div class="card-body">
 
                     </div>
@@ -150,39 +159,52 @@
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Ownership
                             </label>
                             <input type="text" id="ownership" name="ownership"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Ownership" required>
+                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('ownership')
+                                     border-red-500
+                                @enderror"
+                                placeholder="Ownership" required value="{{ old('ownership') }}">
+                            @error('ownership')
+                                <div>
+                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                </div>
+                            @enderror
+
                         </div>
                         <div class="mb-3">
                             <label for="status_area"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Status Area
                             </label>
-                            <div class="flex">
-                                <div class="flex items-center me-4">
+                            <div class="flex gap-4">
+                                <div class="flex items-center me-4 gap-2">
                                     <input id="inline-radio" type="radio" value="private" name="status_area"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="inline-radio"
                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Private</label>
                                 </div>
-                                <div class="flex items-center me-4">
+                                <div class="flex items-center me-4 gap-2">
                                     <input id="inline-radio" type="radio" value="public" name="status_area"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="inline-radio"
                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Public</label>
                                 </div>
+
                             </div>
 
                         </div>
 
                         <div class="mb-3">
-                            <label for="photo"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
-                            </label>
-                            <img class="img-preview1 img-fluid mb-3 col-sm-5">
-                            <input type="file" id="photo" name="photo"
-                                onchange="previewImage('#photo', '.img-preview1')"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Photo" required>
+                            <div>
+                                <label for="photo"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo
+                                </label>
+                                <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                                <input type="file" id="photo" name="photo"
+                                    onchange="previewImage('#photo', '.img-preview1')"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    placeholder="Photo" required>
+                            </div>
+
+
                         </div>
 
                         <div class="mb-3">
@@ -202,21 +224,6 @@
 
                         <div class="flex space-x-4">
                             <div class="flex-1 mb-3">
-                                <label for="lu_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
-                                <select id="lu_id" name="lu_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required>
-                                    <option value="" disabled selected>select Land Use</option>
-                                    @foreach ($landUses as $lu)
-                                        <option value="{{ $lu->lu_id }}">{{ $lu->lu_id }} {{ $lu->landuse }}
-                                        </option>
-                                    @endforeach
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-
-                            <div class="flex-1 mb-3">
                                 <label for="lc_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
                                 <select id="lc_id" name="lc_id"
@@ -224,8 +231,28 @@
                                     required>
                                     <option value="" disabled selected>select Land Cover</option>
                                     @foreach ($landCovers as $lc)
-                                        <option value="{{ $lc->lc_id }}">{{ $lc->lc_id }} {{ $lc->landcover }} type:
+                                        <option value="{{ $lc->lc_id }}">{{ $lc->lc_id }} {{ $lc->landcover }}
+                                            type:
                                             {{ $lc->type }}</option>
+                                    @endforeach
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+
+                            <div class="flex-1 mb-3">
+                                <label for="lu_id"
+
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
+                                    {{-- class="land-use-select"  --}}
+                                    {{-- class untuk mengunakan library multiple select --}}
+                                    {{-- multiple="multiple" --}}
+                                <select id="lu_id"  name="lu_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required >
+                                    <option value="" disabled selected>select Land Use</option>
+                                    @foreach ($landUses as $lu)
+                                        <option value="{{ $lu->lu_id }}">{{ $lu->lu_id }} {{ $lu->landuse }}
+                                        </option>
                                     @endforeach
                                     <!-- Add more options as needed -->
                                 </select>
@@ -236,16 +263,30 @@
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Permanence
                             </label>
                             <input type="text" id="permanence" name="permanence"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Permanence" required>
+                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('permanence')
+                                     border-red-500
+                                @enderror"
+                                placeholder="Permanence" required value="{{ old('permanence') }}">
+                            @error('permanence')
+                                <div>
+                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="description"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Description
                             </label>
                             <textarea name="description" id="description" cols="10" rows="3"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Description"></textarea>
+                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('description')
+                                     border-red-500
+                                @enderror"
+                                placeholder="Description" value="{{ old('description') }}">{{ Request::old('description') }}</textarea>
+                            @error('description')
+                                <div>
+                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="flex justify-end space-x-4">
@@ -379,6 +420,7 @@
 
     {{-- IMPORT SCRIPT --}}
     @include('backpage.package.package-js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         function previewImage(img, preview) {
             const image = document.querySelector(img);
@@ -417,8 +459,13 @@
             $('#stepper2').removeClass('text-blue-600 dark:text-blue-500');
             $('#stepper1').addClass('text-blue-600 dark:text-blue-500');
         }
+        // $('.land-use-select').select2({
+        //     theme: "classic",
+        //     placeholder: 'Select Land Use',
+        // });
         $(document).ready(function() {
             showSection1();
+
         });
 
         // Maps Leaflet
@@ -477,7 +524,7 @@
         // Add the custom zoom control to the map
         map.addControl(customZoomControl);
 
-        var baseMaps = {    
+        var baseMaps = {
             "OpenStreetMap": openStreetMap,
             "Google Satelite": satelliteMap,
             "Google Hibrid": googleHibridMap,

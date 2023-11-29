@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('frontpage/assets/css-leaflet/leaflet-control-geocoder.Geocoder.css') }}">
     <!-- icon awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    @stack('addon-style')
 </head>
 
 <body class="bg-gray-100">
