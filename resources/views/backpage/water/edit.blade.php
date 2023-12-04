@@ -167,22 +167,35 @@
                             <label for="photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
                             </label>
-                            <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                            <input type="hidden" name="oldPhoto" value="{{ $water->photo }}">
+                            @if ($water->photo)
+                                <img src="{{ asset('storage/' . $water->photo) }}"
+                                    class="img-preview1 img-fluid mb-3 col-sm-5">
+                            @else
+                                <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                            @endif
+
                             <input type="file" id="photo" name="photo"
                                 onchange="previewImage('#photo', '.img-preview1')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light "
-                                placeholder="Photo" required value="{{ $water->photo }}">
+                                placeholder="Photo" required value="{{ old($water->photo) }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="related_photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
                             </label>
-                            <img class="img-preview2 img-fluid mb-3 col-sm-5">
+                            <input type="hidden" name="oldRelatedPhoto" value="{{ $water->related_photo }}">
+                            @if ($water->related_photo)
+                                <img src="{{ asset('storage/' . $water->related_photo) }}"
+                                    class="img-preview2 img-fluid mb-3 col-sm-5">
+                            @else
+                                <img class="img-preview2 img-fluid mb-3 col-sm-5">
+                            @endif
                             <input type="file" id="related_photo" name="related_photo"
                                 onchange="previewImage('#related_photo', '.img-preview2')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Related Photo" required>
+                                placeholder="Related Photo" required value="{{ old($water->related_photo) }}">
                         </div>
                     </div>
                 </div>
@@ -254,6 +267,7 @@
             </div>
 
             <!-- end best seller & traffic -->
+
             <!-- best seller & traffic -->
             {{-- <div id="form-section3" style="display: none;" class="grid grid-cols-2 lg:grid-cols-1 gap-5 mt-2    ">
                 <div class="card">
