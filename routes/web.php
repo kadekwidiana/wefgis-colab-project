@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard1', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -56,6 +56,13 @@ Route::post('/get-address', [EndpointController::class, 'getAddress'])->name('ge
 Route::get('/', [MapController::class, 'map'])->name('map');
 
 // BACKPAGE
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-Route::resource('/water', WaterController::class);
-Route::resource('/spatial', SpatialController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::resource('/water', WaterController::class);
+    Route::resource('/spatial', SpatialController::class);
+});
+
+route::get('/loginn', function () {
+    return view('backpage.auth.login');
+});

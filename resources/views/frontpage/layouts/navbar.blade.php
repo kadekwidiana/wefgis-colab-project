@@ -31,6 +31,13 @@
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
                                         class="fa-solid fa-user" style="color: #ffffff;"></i></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (Route::has('login'))
+                                        @auth
+                                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                                        <hr>
+                                        <li><a class="dropdown-item" href="/dashboard">Logout</a></li>
+                                        @endauth
+                                    @endif
                                     <li><a class="dropdown-item" href="/dashboard">Login</a></li>
                                 </ul>
                             </li>
