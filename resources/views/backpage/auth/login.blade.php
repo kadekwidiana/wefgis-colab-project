@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>WefGIS | Login</title>
+    <title>Login | WefGIS</title>
     <link rel="icon" href="{{ asset('frontpage/assets/icons/icon_web_wefgis.ico') }}" type="image/x-icon">
     {{-- <link rel="stylesheet" href="{{ asset('backpage/css/style.css') }}"> --}}
     <script src="https://cdn.tailwindcss.com"></script>
