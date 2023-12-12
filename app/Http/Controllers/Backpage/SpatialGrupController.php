@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backpage;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LandUseController extends Controller
+class SpatialGrupController extends Controller
 {
     /**
      * Display a listing of the resource.

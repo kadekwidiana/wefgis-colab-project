@@ -1,35 +1,32 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\EndpointAPI;
 
+use App\Http\Controllers\Controller;
 use App\Models\CropChachoengsao;
-use App\Models\Spatial;
-use App\Models\SpatialGroup;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
-class CropChacoengsaoController extends Controller
+class EndpointController extends Controller
 {
     private $baseUrl = "http://rs.wefgis.com";
-    public function index()
-    {
-        $results = CropChachoengsao::all();
-        $spatials = Spatial::all();
-        $spatialGroups = SpatialGroup::all();
-        return view('frontpage.maps', compact([
-            'results',
-            'spatials',
-            'spatialGroups'
-        ]));
-    }
-
     public function pointCrop()
     {
         $result = CropChachoengsao::all();
         return json_encode($result);
     }
+    public function pointNakhon()
+    {
+        $result = DB::table('data_nakhons')
+        ->join('project_codes', 'data_nakhons.project_code', '=', 'project_codes.project_code')
+        ->select('data_nakhons.*', 'project_codes.icon')
+        ->get();
 
+        return response()->json($result);
+    }
+    
     public function waterOccurrence()
     {
         try {
@@ -128,9 +125,8 @@ class CropChacoengsaoController extends Controller
             return response()->json(['error' => 'API request failed'], 500);
         }
     }
-
-    // API phenology crop
-    public function phenology_crop(Request $request){
+    // model phenology crop
+    public function phenologyCrop(Request $request){
         $point = $request->input('point');
         $year = $request->input('year');
         $month = $request->input('month');
@@ -147,4 +143,37 @@ class CropChacoengsaoController extends Controller
     
         return response()->json($responseData);
     }
+    
+    public function getAltitude(Request $request)
+    {
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+
+        $apiUrl = "https://api.opentopodata.org/v1/srtm90m?locations=$latitude,$longitude";
+
+        $response = Http::get($apiUrl);
+
+         $altitude = $response->json('results.0.elevation');
+
+        return response()->json(['altitude' => $altitude]);
+    }
+    public function getAddress(Request $request)
+    {
+        try {
+            $latitude = $request->input('latitude');
+            $longitude = $request->input('longitude');
+    
+            $apiUrl = "https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude";
+    
+            $response = Http::get($apiUrl);
+    
+            $address = $response->json('display_name');
+    
+            return response()->json(['address' => $address]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e]);
+        }
+       
+    }
+
 }

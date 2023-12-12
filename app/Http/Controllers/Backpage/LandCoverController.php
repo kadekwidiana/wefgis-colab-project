@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backpage;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RegencyController extends Controller
+class LandCoverController extends Controller
 {
     /**
      * Display a listing of the resource.

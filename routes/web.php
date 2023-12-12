@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\CropChacoengsaoController;
-use App\Http\Controllers\NakhonController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SpatialController;
-use App\Http\Controllers\WaterController;
+use App\Http\Controllers\Backpage\DashboardController;
+use App\Http\Controllers\Frontpage\CropChacoengsaoController;
+use App\Http\Controllers\Backpage\NakhonController;
+use App\Http\Controllers\Backpage\ProfileController;
+use App\Http\Controllers\Backpage\SpatialController;
+use App\Http\Controllers\Backpage\WaterController;
+use App\Http\Controllers\Frontpage\MapController;
+use App\Http\Controllers\EndpointAPI\EndpointController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,33 +33,29 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-// FRONTPAGE
-// view frontpage
-Route::get('/', [CropChacoengsaoController::class, 'index'])->name('index');
-
-
-Route::get('/pointCrop', [CropChacoengsaoController::class, 'pointCrop'])->name('json-crop');
-// GEE
-Route::get('/wateroccurence', [CropChacoengsaoController::class, 'waterOccurrence'])->name('waterOccurrence');
-Route::post('/precipitation', [CropChacoengsaoController::class, 'precipitation'])->name('precipitation');
-Route::post('/vci', [CropChacoengsaoController::class, 'vci'])->name('vci');
-Route::post('/evi', [CropChacoengsaoController::class, 'evi'])->name('evi');
+// ENDPOINT API
+// point crop chachoengsao
+Route::get('/pointCrop', [EndpointController::class, 'pointCrop'])->name('json-crop');
+// point spatial nakhon phatom
+Route::get('/pointNakhon', [EndpointController::class, 'pointNakhon'])->name('point-nakhon');
+// gee integration
+Route::get('/wateroccurence', [EndpointController::class, 'waterOccurrence'])->name('waterOccurrence');
+Route::post('/precipitation', [EndpointController::class, 'precipitation'])->name('precipitation');
+Route::post('/vci', [EndpointController::class, 'vci'])->name('vci');
+Route::post('/evi', [EndpointController::class, 'evi'])->name('evi');
+// gee Nakhon Pathom
+Route::get('/nakhonwater', [EndpointController::class, 'nakhonWater'])->name('nakhonWater');
+Route::get('/nakhonmap', [EndpointController::class, 'nakhonMap'])->name('nakhonMap');
 // phenology crop
-Route::post('/phenology_crop', [CropChacoengsaoController::class, 'phenology_crop'])->name('phenology_crop');
+Route::post('/phenology_crop', [EndpointController::class, 'phenologyCrop'])->name('phenologyCrop');
+// get altitude & get address
+Route::post('/get-altitude', [EndpointController::class, 'getAltitude'])->name('getAltitude');
+Route::post('/get-address', [EndpointController::class, 'getAddress'])->name('getAddress');
 
-// GEE Nakhon Pathom
-Route::get('/nakhonwater', [CropChacoengsaoController::class, 'nakhonWater'])->name('nakhonWater');
-Route::get('/nakhonmap', [CropChacoengsaoController::class, 'nakhonMap'])->name('nakhonMap');
-Route::get('/pointNakhon', [NakhonController::class, 'pointNakhon'])->name('point-nakhon');
+// FRONTPAGE
+Route::get('/', [MapController::class, 'map'])->name('map');
 
 // BACKPAGE
-Route::get('/dashboard', function () {
-    return view('backpage.dashboard.index');
-});
-
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::resource('/water', WaterController::class);
-
-route::resource('/spatial', SpatialController::class);
-// get altitude & get address
-Route::post('/get-altitude', [WaterController::class, 'getAltitude']);
-Route::post('/get-address', [WaterController::class, 'getAddress']);
+Route::resource('/spatial', SpatialController::class);

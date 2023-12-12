@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backpage;
 
+use App\Http\Controllers\Controller;
 use App\Models\Spatial;
 use App\Models\SpatialGroup;
 use Illuminate\Http\Request;

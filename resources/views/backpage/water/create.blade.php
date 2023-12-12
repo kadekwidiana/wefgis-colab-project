@@ -241,14 +241,13 @@
 
                             <div class="flex-1 mb-3">
                                 <label for="lu_id"
-
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
-                                    {{-- class="land-use-select"  --}}
-                                    {{-- class untuk mengunakan library multiple select --}}
-                                    {{-- multiple="multiple" --}}
-                                <select id="lu_id"  name="lu_id"
+                                {{-- class="land-use-select"  --}}
+                                {{-- class untuk mengunakan library multiple select --}}
+                                {{-- multiple="multiple" --}}
+                                <select id="lu_id" name="lu_id"
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required >
+                                    required>
                                     <option value="" disabled selected>select Land Use</option>
                                     @foreach ($landUses as $lu)
                                         <option value="{{ $lu->lu_id }}">{{ $lu->lu_id }} {{ $lu->landuse }}
@@ -640,7 +639,6 @@
                 rect: false,
                 circle: false,
                 rectangle: false
-
             },
             edit: {
                 featureGroup: drawnItems
