@@ -35,11 +35,15 @@
 
         @include('backpage.layouts.sidebar')
 
+
         {{-- content --}}
         @yield('content')
 
-        
+
     </div>
+
+    @yield('modal')
+
     <!-- end wrapper -->
     <!-- script -->
     <script src="{{ asset('backpage/js/scripts.js') }}"></script>

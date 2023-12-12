@@ -1,4 +1,13 @@
 @extends('backpage.layouts.main')
+@push('addon-style')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        span.select2.select2-container.select2-container--classic {
+            width: 100% !important;
+        }
+    </style>
+@endpush
 
 @section('content')
     <!-- strat content -->
@@ -105,7 +114,7 @@
                             </label>
                             <textarea name="address" id="address" cols="10" rows="2"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Address">{{ $water->address }}</textarea>
+                                required placeholder="Address">{{ $water->address }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="aoi"
@@ -113,7 +122,7 @@
                             </label>
                             <textarea name="aoi" id="aoi" cols="10" rows="3"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Geometry">{{ $water->aoi }}</textarea>
+                                required placeholder="Geometry">{{ $water->aoi }}</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -178,7 +187,9 @@
                             <input type="file" id="photo" name="photo"
                                 onchange="previewImage('#photo', '.img-preview1')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light "
-                                placeholder="Photo" required value="{{ old($water->photo) }}">
+                                placeholder="Photo" value="{{ old($water->photo) }}">
+
+
                         </div>
 
                         <div class="mb-3">
@@ -195,7 +206,7 @@
                             <input type="file" id="related_photo" name="related_photo"
                                 onchange="previewImage('#related_photo', '.img-preview2')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Related Photo" required value="{{ old($water->related_photo) }}">
+                                placeholder="Related Photo" value="{{ old($water->related_photo) }}">
                         </div>
                     </div>
                 </div>
@@ -203,23 +214,6 @@
                     <div class="card-body">
 
                         <div class="flex space-x-4">
-                            <div class="flex-1 mb-3">
-                                <label for="lu_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
-                                <select id="lu_id" name="lu_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required>
-                                    <option value="" disabled selected>select Land Use</option>
-                                    @foreach ($landUses as $lu)
-                                        <option value="{{ $lu->lu_id }}"
-                                            {{ old('lu_id', $water->lu_id) == $lu->lu_id ? 'selected' : '' }}>
-                                            {{ $lu->lu_id }} {{ $lu->landuse }}
-                                        </option>
-                                    @endforeach
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-
                             <div class="flex-1 mb-3">
                                 <label for="lc_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
@@ -237,6 +231,30 @@
                                     <!-- Add more options as needed -->
                                 </select>
                             </div>
+                            <div class="flex-1 mb-3">
+                                <label for="lu_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
+                                <select id="lu_id"
+                                    class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required name="lu_id[]" multiple>
+                                    {{-- @foreach ($landUses as $lu)
+                                        <option class="lu_option" value="{{ $lu->lu_id }}" {{ in_array($lu->lu_id, $data) ? 'selected' : '' }}>
+                                            {{ $lu->lu_id }} {{ $lu->landuse }}
+                                        </option>
+                                    @endforeach --}}
+
+                                    @foreach ($landUses as $lu)
+                                        <option value="{{ $lu->lu_id }}"
+                                            {{ in_array($lu->lu_id, json_decode($water->lu_id, true)) ? 'selected' : '' }}>
+                                            {{ $lu->lu_id }} {{ $lu->landuse }}
+                                        </option>
+                                    @endforeach
+
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+
+
                         </div>
                         <div class="mb-3">
                             <label for="permanence"
@@ -252,7 +270,7 @@
                             </label>
                             <textarea name="description" id="description" cols="10" rows="3"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Description">{{ $water->altitude }}</textarea>
+                                required placeholder="Description">{{ $water->description }}</textarea>
                         </div>
 
                         <div class="flex justify-end space-x-4">
@@ -387,6 +405,7 @@
 
     {{-- IMPORT SCRIPT --}}
     @include('backpage.package.package-js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         // function previewImage(img, preview) {
         //     const image = document.querySelector(img);
@@ -451,6 +470,10 @@
             $('#stepper2').removeClass('text-blue-600 dark:text-blue-500');
             $('#stepper1').addClass('text-blue-600 dark:text-blue-500');
         }
+        $('.land-use-select').select2({
+            theme: "classic",
+            placeholder: 'Select Land Use',
+        });
         $(document).ready(function() {
             showSection1();
         });

@@ -4,8 +4,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Water;
-use App\Models\Regency;
 use App\Models\LandUse;
+use App\Models\Regency;
 use App\Models\LandCover;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -27,7 +27,7 @@ class WaterController extends Controller
 
         $response = Http::get($apiUrl);
 
-         $altitude = $response->json('results.0.elevation');
+        $altitude = $response->json('results.0.elevation');
 
         return response()->json(['altitude' => $altitude]);
     }
@@ -59,7 +59,8 @@ class WaterController extends Controller
         $data = $request->validate([
             // 'water_id' => 1,
             'regency_id' => 'required|exists:regencies,regency_id',
-            'lu_id' => 'required|exists:land_uses,lu_id',
+            'lu_id' => 'array',
+            'lu_id.*' => 'required',
             'lc_id' => 'required|exists:land_covers,lc_id',
             'name' => 'required|max:45',
             'latitude' => 'required|max:45',
@@ -74,14 +75,26 @@ class WaterController extends Controller
             'permanence' => 'required|max:100',
             'description' => 'required',
             'related_photo' => 'required',
+            
+            
         ]);
 
-        if ($request->file('photo')){
-            $data['photo']= $request->file('photo')->store('water-photo');
+        if ($request->file('photo')) {
+            // $data['photo'] = $request->file('photo')->store('water-photo');
+            $file = $request->file('photo');
+            $originalName = $file->getClientOriginalName();
+            $photoPath = $file->storeAs('water-photo', $originalName);
+            $data['photo'] = $photoPath;
         }
-        if ($request->file('related_photo')){
-            $data['related_photo']= $request->file('related_photo')->store('water-related-photo');
+        if ($request->file('related_photo')) {
+            // $data['related_photo'] = $request->file('related_photo')->store('water-related-photo');
+
+            $file = $request->file('related_photo');
+            $originalName = $file->getClientOriginalName();
+            $photoPath = $file->storeAs('water-related-photo', $originalName);
+            $data['related_photo'] = $photoPath;
         }
+        $data['lu_id'] = json_encode($request->lu_id);
 
         Water::create($data);
 
@@ -100,13 +113,19 @@ class WaterController extends Controller
         $regencies = Regency::all();
         $landUses = LandUse::all();
         $landCovers = LandCover::all();
+        $data = [
+            // ...data lainnya
+            'lu_id' => json_decode($water->lu_id),
+        ];
 
-        return view('backpage.water.edit', compact('water', 'regencies', 'landUses', 'landCovers'));
+
+        return view('backpage.water.edit', compact('water', 'regencies', 'landUses', 'landCovers','data'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $water = Water::findOrFail($id);
+        $rules = [
             'regency_id' => 'required|exists:regencies,regency_id',
             'lu_id' => 'required|exists:land_uses,lu_id',
             'lc_id' => 'required|exists:land_covers,lc_id',
@@ -117,22 +136,80 @@ class WaterController extends Controller
             'address' => 'required',
             'wide' => 'required|max:45',
             'aoi' => 'required',
+
             'status_area' => 'required|in:private,public',
             'ownership' => 'required|max:45',
-            'photo' => 'required|max:100',
+
             'permanence' => 'required|max:100',
             'description' => 'required',
-            'related_photo' => 'required',
-        ]);
 
-        $water = Water::findOrFail($id);
-        $water->update($request->all());
+        ];
+        // $request->validate([
+        //     'regency_id' => 'required|exists:regencies,regency_id',
+        //     'lu_id' => 'required|exists:land_uses,lu_id',
+        //     'lc_id' => 'required|exists:land_covers,lc_id',
+        //     'name' => 'required|max:45',
+        //     'latitude' => 'required|max:45',
+        //     'longitude' => 'required|max:45',
+        //     'altitude' => 'required|max:45',
+        //     'address' => 'required',
+        //     'wide' => 'required|max:45',
+        //     'aoi' => 'required',
+        //     'status_area' => 'required|in:private,public',
+        //     'ownership' => 'required|max:45',
+        //     'photo' => 'required|max:100',
+        //     'permanence' => 'required|max:100',
+        //     'description' => 'required',
+        //     'related_photo' => 'required',
+        // ]);
+
+
+
+        if ($request->hasfile('photo')) {
+            $rules['photo'] = 'required';
+        }
+        if ($request->hasfile('related_photo')) {
+            $rules['related_photo'] = 'required';
+        }
+        $validatedData = $request->validate($rules);
+
+        
+
+        if ($request->hasFile('photo')) {
+            if ($request->oldPhoto) {
+                $oldPhotoPath = $request->oldPhoto;
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+
+
+                $file = $request->file('photo');
+                $originalName = $file->getClientOriginalName();
+                $photoPath = $file->storeAs('water-photo', $originalName);
+                $validatedData['photo'] = $photoPath;
+            }
+        }
+
+        if ($request->hasfile('related_photo')) {
+            if ($request->oldRelatedPhoto) {
+                $oldPhotoPath = $request->oldRelatedPhoto;
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+                $file = $request->file('related_photo');
+                $originalName = $file->getClientOriginalName();
+                $photoPath = $file->storeAs('water-related-photo', $originalName);
+                $validatedData['related_photo'] = $photoPath;
+            }
+            // $validatedData['related_photo'] = $request->file('related_photo')->store('water-related-photo');
+        }
+        $water->update($validatedData);
 
         return redirect()->route('water.index')->with('success', 'Water area updated successfully.');
     }
 
     public function destroy($id)
-    {   
+    {
         $water = Water::findOrFail($id);
         $water->delete();
 

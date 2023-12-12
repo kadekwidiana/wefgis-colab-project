@@ -20,7 +20,7 @@ class Water extends Model
 
     public function landUse()
     {
-        return $this->belongsTo(LandUse::class, 'lu_id');
+        return $this->hasMany(LandUse::class, 'lu_id');
     }
 
     public function landCover()
