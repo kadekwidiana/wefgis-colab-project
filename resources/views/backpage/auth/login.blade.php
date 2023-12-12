@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Document</title>
+    <title>WefGIS | Login</title>
+    <link rel="icon" href="{{ asset('frontpage/assets/icons/icon_web_wefgis.ico') }}" type="image/x-icon">
     {{-- <link rel="stylesheet" href="{{ asset('backpage/css/style.css') }}"> --}}
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -23,14 +24,14 @@
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" method="POST" action="{{ route('login') }}">
-                 @csrf
+                @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
                         address</label>
                     <div class="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email" required
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3">
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>
 

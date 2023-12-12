@@ -53,7 +53,7 @@
                 <table class="table-auto w-full text-left">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 border-r">Group id</th>
+                            <th class="px-4 py-2 border-r">Group Name</th>
                             <th class="px-4 py-2 border-r">Name</th>
                             <th class="px-4 py-2 border-r">Url</th>
                             <th class="px-4 py-2 border-r">attribute</th>
@@ -63,8 +63,8 @@
                     </thead>
                     <tbody class="text-gray-600 overflow-hidden">
                         @foreach ($spatials as $spatial)
-                            <tr class = "normal-case" >
-                                <td class="border border-l-0 px-4 py-2">{{ $spatial->group_id }}</td>
+                            <tr class = "normal-case">
+                                <td class="border border-l-0 px-4 py-2">{{ $spatial->spatialGroup->name }}</td>
                                 <td class="border border-l-0 px-4 py-2">
                                     <a href="{{ route('spatial.show', $spatial->sp_id) }}">{{ $spatial->name }}</a>
                                 </td>
