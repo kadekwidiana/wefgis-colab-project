@@ -81,7 +81,7 @@
                             $no = 1;
                         @endphp
                         @foreach ($waters as $water)
-                            <tr>
+                            <tr class = "normal-case">
                                 <td class="border border-l-0 px-4 py-2">{{ $no++ }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $water->name }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $water->regency->regency }},

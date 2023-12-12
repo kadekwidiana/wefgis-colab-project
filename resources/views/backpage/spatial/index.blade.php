@@ -63,7 +63,7 @@
                     </thead>
                     <tbody class="text-gray-600 overflow-hidden">
                         @foreach ($spatials as $spatial)
-                            <tr >
+                            <tr class = "normal-case" >
                                 <td class="border border-l-0 px-4 py-2">{{ $spatial->group_id }}</td>
                                 <td class="border border-l-0 px-4 py-2">
                                     <a href="{{ route('spatial.show', $spatial->sp_id) }}">{{ $spatial->name }}</a>
