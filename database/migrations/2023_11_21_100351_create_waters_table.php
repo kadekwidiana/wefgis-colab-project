@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id('water_id');
             $table->unsignedBigInteger('regency_id'); 
             $table->foreign('regency_id')->references('regency_id')->on('regencies');
-            $table->unsignedBigInteger('lu_id'); 
-            $table->foreign('lu_id')->references('lu_id')->on('land_uses');
+            $table->string('lu_id',100); 
+           
             $table->unsignedBigInteger('lc_id'); 
             $table->foreign('lc_id')->references('lc_id')->on('land_covers');
             $table->string('name', 45);

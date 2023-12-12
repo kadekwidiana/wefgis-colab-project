@@ -1,6 +1,11 @@
 @extends('backpage.layouts.main')
 @push('addon-style')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        span.select2.select2-container.select2-container--classic {
+            width: 100% !important;
+        }
+    </style>
 @endpush
 @section('content')
     <!-- strat content -->
@@ -229,6 +234,7 @@
                                 <select id="lc_id" name="lc_id"
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     required>
+
                                     <option value="" disabled selected>select Land Cover</option>
                                     @foreach ($landCovers as $lc)
                                         <option value="{{ $lc->lc_id }}">{{ $lc->lc_id }} {{ $lc->landcover }}
@@ -245,12 +251,13 @@
                                 {{-- class="land-use-select"  --}}
                                 {{-- class untuk mengunakan library multiple select --}}
                                 {{-- multiple="multiple" --}}
-                                <select id="lu_id" name="lu_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required>
-                                    <option value="" disabled selected>select Land Use</option>
+                                <select id="lu_id"
+                                    class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required name="lu_id[]" multiple>
+
                                     @foreach ($landUses as $lu)
-                                        <option value="{{ $lu->lu_id }}">{{ $lu->lu_id }} {{ $lu->landuse }}
+                                        <option class="lu_option" value="{{ $lu->lu_id }}">{{ $lu->lu_id }}
+                                            {{ $lu->landuse }}
                                         </option>
                                     @endforeach
                                     <!-- Add more options as needed -->
@@ -298,120 +305,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- end best seller & traffic -->
-            <!-- best seller & traffic -->
-            {{-- <div id="form-section3" style="display: none;" class="grid grid-cols-2 lg:grid-cols-1 gap-5 mt-2    ">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="regency"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Regency</label>
-                            <select id="regency"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                required>
-                                <option value="" disabled selected>Select Regency</option>
-                                <option value="regency1">Regency 1</option>
-                                <option value="regency2">Regency 2</option>
-                                <option value="regency3">Regency 3</option>
-                                <!-- Add more options as needed -->
-                            </select>
-                        </div>
-
-                        <div class="flex space-x-4">
-                            <div class="flex-1 mb-3">
-                                <label for="river1"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
-                                <input type="text" id="river1"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Latitude" required>
-                            </div>
-
-                            <div class="flex-1 mb-3">
-                                <label for="river2"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
-                                <input type="text" id="river2"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Longitude" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="river"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Altitude
-                            </label>
-                            <input type="text" id="river"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Altitude" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="river"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Geometry
-                            </label>
-                            <textarea name="" id="" cols="10" rows="3"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Geometry"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="regency"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Regency</label>
-                            <select id="regency"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                required>
-                                <option value="" disabled selected>Select Regency</option>
-                                <option value="regency1">Regency 1</option>
-                                <option value="regency2">Regency 2</option>
-                                <option value="regency3">Regency 3</option>
-                                <!-- Add more options as needed -->
-                            </select>
-                        </div>
-
-                        <div class="flex space-x-4">
-                            <div class="flex-1 mb-3">
-                                <label for="river1"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
-                                <input type="text" id="river1"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Latitude" required>
-                            </div>
-
-                            <div class="flex-1 mb-3">
-                                <label for="river2"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
-                                <input type="text" id="river2"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Longitude" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="river"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Altitude
-                            </label>
-                            <input type="text" id="river"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Altitude" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="river"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Geometry
-                            </label>
-                            <textarea name="" id="" cols="10" rows="3"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Geometry"></textarea>
-                        </div>
-
-                        <div class="flex justify-end space-x-4">
-                            <a href="#step2" onclick="showSection2()"
-                                class="btn-bs-danger ml-auto mr-2 lg:mr-0 lg:mb-6 px-2 w-24">Back</a>
-                            <button type="submit" class="btn-bs-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            <!-- end best seller & traffic -->
         </form>
     </div>
     </div>
@@ -458,13 +351,13 @@
             $('#stepper2').removeClass('text-blue-600 dark:text-blue-500');
             $('#stepper1').addClass('text-blue-600 dark:text-blue-500');
         }
-        // $('.land-use-select').select2({
-        //     theme: "classic",
-        //     placeholder: 'Select Land Use',
-        // });
+
+        $('.land-use-select').select2({
+            theme: "classic",
+            placeholder: 'Select Land Use',
+        });
         $(document).ready(function() {
             showSection1();
-
         });
 
         // Maps Leaflet
