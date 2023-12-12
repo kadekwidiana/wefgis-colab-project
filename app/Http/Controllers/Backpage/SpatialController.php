@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backpage;
 
+use App\Http\Controllers\Controller;
 use App\Models\Spatial;
 use App\Models\SpatialGroup;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class SpatialController extends Controller
         $request->validate(
             [
                 'group_id' => 'required|exists:spatial__groups,group_id',
+                'title' => 'required|max:255',
                 'name' => 'required|max:255',
                 'url' => 'required|max:255',
                 'attribute' => 'required|max:50',

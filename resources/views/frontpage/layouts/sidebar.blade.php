@@ -940,7 +940,6 @@
 
 </div>
 
-
 <!-- Sidebar analisis with AOI -->
 <div class="container sidebar-analisis bg-white mt-0 pb-5" id="sidebar-analisis">
     <h5 class="text-center">Analysis Information</h5>

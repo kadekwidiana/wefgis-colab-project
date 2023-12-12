@@ -1,8 +1,9 @@
 <?php
 // app/Http/Controllers/WaterController.php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backpage;
 
+use App\Http\Controllers\Controller;
 use App\Models\Water;
 use App\Models\LandUse;
 use App\Models\Regency;
