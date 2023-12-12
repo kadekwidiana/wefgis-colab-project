@@ -139,7 +139,7 @@ function handleCheckboxChange(mapKey, layersConfig) {
 async function fetchDataAndCreateLayers(url, layersConfig, handleCheckboxChange) {
     try {
         const data = await $.getJSON(url);
-        console.log(data);
+        // console.log(data);
         // [] for save promises create layer
         const promises = [];
         // Iterate through the configuration of the layers
@@ -177,6 +177,6 @@ async function fetchDataAndCreateLayers(url, layersConfig, handleCheckboxChange)
 $(document).ready(function () {
     // Call fetchDataAndCreateLayers() for URL different layers and appropriate layer configurations
     fetchDataAndCreateLayers("/wateroccurence", layersConfig1, handleCheckboxChange);
-    fetchDataAndCreateLayers("/nakhonmap", layersConfig2, handleCheckboxChange);
-    fetchDataAndCreateLayers("/nakhonwater", layersConfig3, handleCheckboxChange);
+    // fetchDataAndCreateLayers("/nakhonmap", layersConfig2, handleCheckboxChange);
+    // fetchDataAndCreateLayers("/nakhonwater", layersConfig3, handleCheckboxChange);
 });

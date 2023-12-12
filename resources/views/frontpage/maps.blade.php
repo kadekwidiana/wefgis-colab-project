@@ -138,18 +138,17 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Tambahkan item lain di sini -->
                     </div>
 
                     <div class="border rounded mt-2">
                         <!-- <div class="border-top"></div> -->
-                        <p class="bg-secondary p-2 m-0 rounded-top fw-bold text-white">Google Earth Engine
-                            Chachoengsao
-                            <a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#GEE_chachoengsao"
-                                role="button" aria-expanded="false" aria-controls="GEE_chachoengsao">
+                        <a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#GEE_chachoengsao"
+                            role="button" aria-expanded="false" aria-controls="GEE_chachoengsao">
+                            <p class="bg-secondary p-2 m-0 rounded-top fw-bold text-white">Google Earth Engine
+                                Chachoengsao
                                 <i class="fas fa-angle-down text-white"></i>
-                            </a>
+                        </a>
                         </p>
                         <div id="GEE_chachoengsao" class="collapse">
                             <div class="p-2">
@@ -161,14 +160,14 @@
                                     </label>
                                 </div>
                                 {{-- Geo Server --}}
-                                <div class="form-check">
+                                {{-- <div class="form-check">
                                     <input name="chachoengsao_prov" class="form-check-input border border-secondary"
                                         type="checkbox" value="" id="chachoengsao_prov"
                                         data-layer="chachoengsao_prov">
                                     <label class="form-check-label" for="chachoengsao_prov">
                                         Chachoengsao Boundary
                                     </label>
-                                </div>
+                                </div> --}}
                                 <div class="form-check">
                                     <input name="change_intensity" class="form-check-input border border-secondary"
                                         type="checkbox" value="" id="change_intensity"
