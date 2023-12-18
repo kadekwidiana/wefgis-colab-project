@@ -66,3 +66,7 @@ Route::middleware('auth')->group(function () {
 route::get('/loginn', function () {
     return view('backpage.auth.login');
 });
+
+Route::get('/test', function () {
+    return view('/dashboard');
+});

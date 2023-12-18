@@ -58,10 +58,33 @@
 
             <!-- Start Recent Sales -->
             <div class="card col-span-2 xl:col-span-1">
-                <div class="flex justify-between items-center card-header">
-                    <h1 class="h4">List Data</h1>
+                <h1 class="h4 ml-4 my-2">List Data</h1>
+                <div class="flex justify-between items-center card-header gap-4">
+                    <div class="flex-grow">
+                        <form class="" action="{{ route('water.index') }}">
+                            <label for="default-search"
+                                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Cari</label>
+                            <div class="relative flex items-center">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                                <div class="w-[600px]">
+                                    <input type="search" id="default-search"
+                                        class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Cari Nama..." name="search" value="{{ request('search') }}">
+                                </div>
 
-                    <a href="/water/create" class="btn-bs-primary mr-6 lg:mr-0 lg:mb-6">Add Data</a>
+                                <button type="submit"
+                                    class="text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-20">Cari</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="flex justify-center items-center">
+                        <a href="/water/create" class="btn-bs-primary px-4 py-2 items-center  mr-6 lg:mr-0 lg:mb-6">Add Data</a>
+                    </div>
+
 
                 </div>
                 <table class="table-auto w-full text-left">
@@ -70,24 +93,27 @@
                             <th class="px-4 py-2 border-r">No</th>
                             <th class="px-4 py-2 border-r">Name</th>
                             <th class="px-4 py-2 border-r">Regency</th>
-                            <th class="px-4 py-2 border-r">Photo</th>
+                            {{-- <th class="px-4 py-2 border-r">Photo</th> --}}
                             <th class="px-4 py-2 border-r">Status</th>
                             <th class="px-4 py-2 border-r">Description</th>
                             <th class="px-4 py-2 text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600">
-                        @php
+                        {{-- @php
                             $no = 1;
-                        @endphp
+                        @endphp --}}
                         @foreach ($waters as $water)
+                            @php
+                                $nomor_item = $loop->iteration + $waters->firstItem() - 1;
+                            @endphp
                             <tr class = "normal-case">
-                                <td class="border border-l-0 px-4 py-2">{{ $no++ }}</td>
+                                <td class="border border-l-0 px-4 py-2">{{ $nomor_item }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $water->name }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $water->regency->regency }},
                                     {{ $water->regency->province }}</td>
-                                <td class="border border-l-0 px-4 py-2"><img src="{{ asset('storage/' . $water->photo) }}"
-                                        width="200" alt=""></td>
+                                {{-- <td class="border border-l-0 px-4 py-2"><img src="{{ asset('storage/' . $water->photo) }}"
+                                        width="200" alt=""></td> --}}
                                 <td class="border border-l-0 px-4 py-2">{{ $water->status_area }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $water->description }}</td>
                                 <td class="border border-l-0 border-r-0 px-4 py-2">
@@ -130,7 +156,12 @@
 
 
 
+        <div class="flex justify-end items-end p-2">
+            {{ $waters->links() }}
+        </div>
+
     </div>
+
 
 
 

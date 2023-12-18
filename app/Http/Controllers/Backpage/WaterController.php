@@ -10,12 +10,22 @@ use App\Models\Regency;
 use App\Models\LandCover;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+// use Illuminate\Support\Facades\Route;
 
 class WaterController extends Controller
 {
     public function index()
     {
-        $waters = Water::all();
+        $perPage = 3;
+        $currentPage = request()->query('page', 1);
+        $offset = ($currentPage - 1) * $perPage;
+
+
+        $waters = Water::latest()
+            ->filter(request(['search']))
+            ->skip($offset)
+            ->take($perPage)
+            ->paginate($perPage);
         return view('backpage.water.index', compact('waters'));
     }
 
@@ -76,8 +86,8 @@ class WaterController extends Controller
             'permanence' => 'required|max:100',
             'description' => 'required',
             'related_photo' => 'required',
-            
-            
+
+
         ]);
 
         if ($request->file('photo')) {
@@ -120,7 +130,7 @@ class WaterController extends Controller
         ];
 
 
-        return view('backpage.water.edit', compact('water', 'regencies', 'landUses', 'landCovers','data'));
+        return view('backpage.water.edit', compact('water', 'regencies', 'landUses', 'landCovers', 'data'));
     }
 
     public function update(Request $request, $id)
@@ -174,7 +184,7 @@ class WaterController extends Controller
         }
         $validatedData = $request->validate($rules);
 
-        
+
 
         if ($request->hasFile('photo')) {
             if ($request->oldPhoto) {
