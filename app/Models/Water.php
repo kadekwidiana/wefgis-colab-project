@@ -13,6 +13,9 @@ class Water extends Model
     protected $primaryKey = 'water_id';
     protected $fillable = ['regency_id', 'lu_id', 'lc_id', 'name', 'latitude', 'longitude', 'altitude', 'address', 'wide', 'aoi', 'status_area', 'ownership', 'photo', 'permanence', 'description', 'related_photo'];
 
+    protected $casts = [
+        'lu_id' => 'array',
+    ];
     public function regency()
     {
         return $this->belongsTo(Regency::class, 'regency_id');

@@ -70,7 +70,7 @@ class WaterController extends Controller
         $data = $request->validate([
             // 'water_id' => 1,
             'regency_id' => 'required|exists:regencies,regency_id',
-            'lu_id' => 'array',
+            // 'lu_id' => 'array',
             'lu_id.*' => 'required',
             'lc_id' => 'required|exists:land_covers,lc_id',
             'name' => 'required|max:45',
@@ -125,7 +125,7 @@ class WaterController extends Controller
         $landUses = LandUse::all();
         $landCovers = LandCover::all();
         $data = [
-            // ...data lainnya
+            
             'lu_id' => json_decode($water->lu_id),
         ];
 

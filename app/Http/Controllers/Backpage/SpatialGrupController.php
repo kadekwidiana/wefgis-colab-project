@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backpage;
 
 use App\Http\Controllers\Controller;
+use App\Models\SpatialGroup;
 use Illuminate\Http\Request;
 
 class SpatialGrupController extends Controller
@@ -14,7 +15,8 @@ class SpatialGrupController extends Controller
      */
     public function index()
     {
-        //
+        $spatialGroups = SpatialGroup::all();
+        return view('backpage.spatial-grup.index',compact('spatialGroups'));
     }
 
     /**

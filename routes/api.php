@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AUTH\LoginController;
 use App\Http\Controllers\API\AUTH\RegisterController;
+use App\Http\Controllers\API\WaterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CropController;
@@ -44,4 +45,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     // data agregat
     Route::get('data-agregat', [CropController::class, 'dataAgregat'])->name('data-agregat');
+
+    
 });
+// crud water 
+
+Route::apiResource('/water', WaterController::class)->middleware(['auth:sanctum']);
+// Route::apiResource('/water', WaterController::class);

@@ -49,13 +49,8 @@
 
     <!-- strat content -->
     <div class="bg-gray-100 flex-1 p-6 md:mt-16">
-
-
-
         <!-- start quick Info -->
         <div class="grid grid-cols-2 gap-6 mt-6 xl:grid-cols-1">
-
-
             <!-- Start Recent Sales -->
             <div class="card col-span-2 xl:col-span-1">
                 <h1 class="h4 ml-4 my-2">List Data</h1>
@@ -73,8 +68,7 @@
                                         class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Cari Nama..." name="search" value="{{ request('search') }}">
                                 </div>
-
-                                <button type="submit"
+                                <button id="buttonSearch" type="submit"
                                     class="text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-20">Cari</button>
                             </div>
                         </form>
@@ -82,7 +76,8 @@
 
 
                     <div class="flex justify-center items-center">
-                        <a href="/water/create" class="btn-bs-primary px-4 py-2 items-center  mr-6 lg:mr-0 lg:mb-6">Add Data</a>
+                        <a href="/water/create" class="btn-bs-primary px-4 py-2 items-center  mr-6 lg:mr-0 lg:mb-6">Add
+                            Data</a>
                     </div>
 
 
@@ -172,6 +167,23 @@
 
 @push('addon-script')
     <script>
+        $('#buttonSearch').on('click', function() {
+            // $value = $('#default-search').val();
+            // alert($value)
+
+            // $.ajax({
+            //     type: "get",
+            //     url: {{  route('water.index') }},
+            //     data: {'search':$value},
+            //     // dataType: "dataType",
+            //     success: function (data) {
+            //         console.log(data)
+            //     }
+            // });
+
+
+        });
+
         function confirmDelete() {
             // Menampilkan modal konfirmasi penghapusan
             let modalDelete = document.getElementById('popup-modal')
