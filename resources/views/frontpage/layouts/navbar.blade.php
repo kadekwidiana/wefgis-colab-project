@@ -27,18 +27,29 @@
                     <li class="nav-item mx-3">
                         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                                        class="fa-solid fa-user" style="color: #ffffff;"></i></i></a>
+                                @if (Route::has('login'))
+                                    @auth
+                                        <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#"
+                                            role="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">{{ Auth::user()->name }}</a>
+                                    @else
+                                        <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                class="fa-solid fa-user" style="color: #ffffff;"></i></i></a>
+                                    @endauth
+                                @endif
+
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @if (Route::has('login'))
                                         @auth
-                                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-                                        <hr>
-                                        <li><a class="dropdown-item" href="/dashboard">Logout</a></li>
+                                            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                                            <hr>
+                                            <li><a class="dropdown-item" href="/dashboard">Logout</a></li>
+                                        @else
+                                            <li><a class="dropdown-item" href="/dashboard">Login</a></li>
                                         @endauth
                                     @endif
-                                    <li><a class="dropdown-item" href="/dashboard">Login</a></li>
+
                                 </ul>
                             </li>
                         </ul>

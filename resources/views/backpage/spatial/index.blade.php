@@ -109,6 +109,9 @@
                 </div>
             </div>
         </div>
+        <div class="flex justify-end items-end p-2">
+            {{ $spatials->links() }}
+        </div>
     </div>
     <!-- end content -->
 @endsection

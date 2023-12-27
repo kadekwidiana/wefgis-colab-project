@@ -249,6 +249,7 @@
                                             {{ $lu->lu_id }} {{ $lu->landuse }}
                                         </option>
                                     @endforeach
+                                    
 
                                     <!-- Add more options as needed -->
                                 </select>

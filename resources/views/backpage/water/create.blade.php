@@ -7,6 +7,42 @@
         }
     </style>
 @endpush
+@section('modal')
+    <div id="popup-modal" tabindex="-1" class="hidden flex items-center justify-center fixed inset-0 z-50 overflow-auto ">
+
+        <div class="relative p-4 w-full max-w-md mx-auto max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button id="close-modal" type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="popup-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <svg id="" class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to
+                        delete
+                        this data?</h3>
+                    <button id="confirm-delete-button" data-modal-hide="popup-modal" type="button"
+                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2">
+                        Yes, I'm sure
+                    </button>
+                    <button id="cancel-delete-button" data-modal-hide="popup-modal" type="button"
+                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
+                        cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 @section('content')
     <!-- strat content -->
     <div class="bg-gray-100 flex-1 p-6 md:mt-16">
@@ -63,7 +99,7 @@
                             <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Name
                             </label>
                             <input type="text" id="name" name="name"
-                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('name')
+                                class="form-input1 shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('name')
                                      border-red-500
                                 @enderror"
                                 placeholder="Name" value="{{ old('name') }}">
@@ -76,8 +112,9 @@
                         <div class="mb-3">
                             <label for="regency_id"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Regency</label>
+                            <div>
                             <select id="regency_id" name="regency_id"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 required>
                                 <option value="" disabled selected>Select Regency</option>
                                 @foreach ($regencies as $regency)
@@ -86,13 +123,14 @@
                                 @endforeach
                                 <!-- Add more options as needed -->
                             </select>
+                            </div>
                         </div>
                         <div class="flex space-x-4">
                             <div class="flex-1 mb-3">
                                 <label for="latitude"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
                                 <input type="text" id="latitude" name="latitude"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     placeholder="Latitude" required value="{{ old('latitude') }}">
                             </div>
 
@@ -100,7 +138,7 @@
                                 <label for="longitude"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
                                 <input type="text" id="longitude" name="longitude"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     placeholder="Longitude" required value="{{ old('longtitude') }}">
                             </div>
                         </div>
@@ -109,7 +147,7 @@
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Altitude
                             </label>
                             <input type="text" id="altitude" name="altitude"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Altitude" required value="{{ old('altitude') }}">
                         </div>
                         <div class="mb-3">
@@ -117,7 +155,7 @@
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Address
                             </label>
                             <textarea name="address" id="address" cols="10" rows="2"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Address">{{ Request::old('address') }}</textarea>
                         </div>
                         <div class="mb-3">
@@ -125,7 +163,7 @@
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Geometry
                             </label>
                             <textarea name="aoi" id="aoi" cols="10" rows="3"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Geometry" value="{{ old('aoi') }}">{{ Request::old('aoi') }}</textarea>
                         </div>
 
@@ -134,7 +172,7 @@
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Wide
                             </label>
                             <input type="text" id="wide" name="wide"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Wide" required value="{{ old('wide') }}">
                         </div>
 
@@ -142,8 +180,11 @@
                             <button type="submit" class="btn-bs-primary">Submit</button>
                             <button type="submit" class="btn-bs-primary">Submit</button>
                         </div> --}}
-                        <a href="#step2" onclick="showSection2()"
+                        {{-- <a href="#step2" onclick="showSection2()"
+                            class="btn-bs-success ml-auto lg:mr-0 lg:mb-6 px-2 w-24">Next</a> --}}
+                        <a href="#step2" id="btnNext1"
                             class="btn-bs-success ml-auto lg:mr-0 lg:mb-6 px-2 w-24">Next</a>
+
                     </div>
                 </div>
                 {{-- maps display --}}
@@ -341,7 +382,57 @@
             $('#stepper3').removeClass('text-blue-600 dark:text-blue-500');
             $('#stepper2').addClass('text-blue-600 dark:text-blue-500');
             $('#stepper1').addClass('text-blue-600 dark:text-blue-500');
+
         }
+
+        
+
+       
+        let isValid = true;
+        function validateInput() {
+            $('.error-message').remove();
+            isValid = true;
+
+            $('.form-input1').each(function() {
+                let inputValue = $(this).val().trim();
+
+                // Memeriksa apakah nilai input kosong
+                if (inputValue === '') {
+                    isValid = false;
+                    // Tambahkan pesan error di bawah input yang tidak valid
+                    let errorMessage = $('<div>').addClass('text-sm text-red-500 mt-1 error-message').text(
+                        'Mohon isi kolom ini.');
+                    $(this).parent().append(errorMessage);
+                    // Tambahkan kelas untuk menandai input yang tidak valid
+                    $(this).addClass('border-red-500');
+                } else {
+                    // Reset tampilan dan kelas input jika input valid
+                    $(this).removeClass('border-red-500');
+                }
+            });
+            return isValid;
+        }
+
+        // Menambahkan event listener untuk memantau perubahan pada input
+        $('.form-input1').on('input', function() {
+            // Validasi akan dipanggil setiap kali ada perubahan pada input
+            validateInput();
+        });
+
+        $('#btnNext1').on('click', function() {
+            // Panggil fungsi validasi saat tombol "Next" diklik
+            if (validateInput()) {
+                // Logika untuk melanjutkan ke langkah berikutnya jika formulir valid
+                $('#form-section3').hide();
+                $('#form-section2').show();
+                $('#form-section1').hide();
+                $('#stepper3').removeClass('text-blue-600 dark:text-blue-500');
+                $('#stepper2').addClass('text-blue-600 dark:text-blue-500');
+                $('#stepper1').addClass('text-blue-600 dark:text-blue-500');
+            }
+        });
+
+
 
         function showSection1() {
             $('#form-section3').hide();

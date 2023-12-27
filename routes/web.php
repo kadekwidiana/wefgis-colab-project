@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backpage\DashboardController;
+use App\Http\Controllers\Backpage\SpatialGrupController;
 use App\Http\Controllers\Frontpage\CropChacoengsaoController;
 use App\Http\Controllers\Backpage\NakhonController;
 use App\Http\Controllers\Backpage\ProfileController;
@@ -61,8 +62,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/water', WaterController::class);
     Route::resource('/spatial', SpatialController::class);
+    Route::resource('/spatialGroup', SpatialGrupController::class);
 });
 
 route::get('/loginn', function () {
     return view('backpage.auth.login');
+});
+
+Route::get('/test', function () {
+    return view('/dashboard');
 });

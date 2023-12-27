@@ -17,7 +17,7 @@ class SpatialController extends Controller
      */
     public function index()
     {
-        $spatials = Spatial::all();
+        $spatials = Spatial::latest()->paginate(2);
         return view('backpage.spatial.index', compact('spatials'));
     }
 
