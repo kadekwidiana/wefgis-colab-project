@@ -45,11 +45,12 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 overflow-hidden">
-                        @foreach ($spatialGroups as $spatial)
-                            <tr class = "normal-case" >
+                        @foreach ($spatialGroups as $spatialGroup)
+                            <tr class = "normal-case">
                                 <td class="border border-l-0 px-4 py-2">{{ $spatialGroup->group_id }}</td>
                                 <td class="border border-l-0 px-4 py-2">
-                                    <a href="{{ route('spatialGroup.show', $spatialGroup->sp_id) }}">{{ $spatialGroup->name }}</a>
+                                    <a
+                                        href="{{ route('spatialGroup.show', $spatialGroup->sp_id) }}">{{ $spatialGroup->name }}</a>
                                 </td>
                                 <td class="border border-l-0 px-4 py-2 max-w-xs break-all">{{ $spatialGroup->url }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $spatialGroup->attribute }}</td>
@@ -60,7 +61,8 @@
                                         <a href="{{ route('spatialGroup.edit', $spatialGroup->sp_id) }}">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <form id="deleteForm" action="{{ route('spatialGroup.destroy', $spatialGroup->sp_id) }}"
+                                        <form id="deleteForm"
+                                            action="{{ route('spatialGroup.destroy', $spatialGroup->sp_id) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')

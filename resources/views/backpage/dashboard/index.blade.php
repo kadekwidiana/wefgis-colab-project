@@ -9,40 +9,45 @@
 
             <!-- card -->
             <div class="card mt-6">
-                <div class="card-body flex items-center">
+                <a href="/water">
+                    <div class="card-body flex items-center">
 
-                    <div class="px-3 py-2 rounded bg-indigo-600 text-white mr-3">
-                        <i class="fad fa-wallet"></i>
+                        <div class="px-3 py-2 rounded bg-indigo-600 text-white mr-3">
+                            <i class="fad fa-wallet"></i>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <h1 class="font-semibold"> Area</h1>
+                            <p class="text-xs"> data area</p>
+                        </div>
+
                     </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold"><span class="num-2"></span> Sales</h1>
-                        <p class="text-xs"><span class="num-2"></span> payments</p>
-                    </div>
-
-                </div>
+                </a>
             </div>
             <!-- end card -->
 
             <!-- card -->
             <div class="card mt-6">
-                <div class="card-body flex items-center">
+                <a href="/spatial">
+                    <div class="card-body flex items-center">
 
-                    <div class="px-3 py-2 rounded bg-green-600 text-white mr-3">
-                        <i class="fad fa-shopping-cart"></i>
+                        <div class="px-3 py-2 rounded bg-green-600 text-white mr-3">
+                            {{-- <i class="fad fa-shopping-cart"></i> --}}
+                            <i class="fad fa-comments"></i>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <h1 class="font-semibold"> Spasial</h1>
+                            <p class="text-xs"> data spasial geoserver</p>
+                        </div>
+
                     </div>
-
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold"><span class="num-2"></span> Orders</h1>
-                        <p class="text-xs"><span class="num-2"></span> items</p>
-                    </div>
-
-                </div>
+                </a>
             </div>
             <!-- end card -->
 
             <!-- card -->
-            <div class="card mt-6 xl:mt-1">
+            {{-- <div class="card mt-6 xl:mt-1">
                 <div class="card-body flex items-center">
 
                     <div class="px-3 py-2 rounded bg-yellow-600 text-white mr-3">
@@ -89,7 +94,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
             <!-- end card -->
 
         </div>
@@ -100,7 +105,7 @@
 
 
             <!-- Start Recent Sales -->
-            <div class="card col-span-2 xl:col-span-1">
+            {{-- <div class="card col-span-2 xl:col-span-1">
                 <div class="flex justify-between items-center card-header">
                     <h1 class="h4">List Data</h1>
 
@@ -140,7 +145,7 @@
 
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
             <!-- End Recent Sales -->
 
 

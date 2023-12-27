@@ -55,6 +55,7 @@ const googleEarth = L.tileLayer('https://storage.googleapis.com/global-surface-w
 const _zoom = 10;
 const coorChachoengsao = [13.666790631230649, 101.35322935835381];
 const coorNakhon = [13.93136446765414, 100.086705447267];
+const coorBali = [-8.198517680287658, 115.10051848149178];
 
 // Initialize the map with the default basemap
 const map = L.map('map', {
@@ -76,11 +77,18 @@ radioInputs.forEach(input => {
         if (selectedLayer === "chachoengsao") {
             $('#layer_chachoengsao').removeClass('d-none');
             $('#layer_nakhon').addClass('d-none');
+            $('#layer_bali').addClass('d-none');
             map.setView(coorChachoengsao, _zoom);
         } else if (selectedLayer === "nakhon") {
             $('#layer_chachoengsao').addClass('d-none');
             $('#layer_nakhon').removeClass('d-none');
+            $('#layer_bali').addClass('d-none');
             map.setView(coorNakhon, _zoom);
+        } else if (selectedLayer === "bali") {
+            $('#layer_chachoengsao').addClass('d-none');
+            $('#layer_nakhon').addClass('d-none');
+            $('#layer_bali').removeClass('d-none');
+            map.setView(coorBali, 11);
         }
     });
 });
@@ -424,8 +432,8 @@ $(document).ready(function () {
         $("#reqInfo").click(function () {
             fetchDataAndCreateChart("/precipitation", "precipitation", "Cumulative Rainfall (mm)", "chartRequestPrecipitation", "Precipitation", "precipitation_id");
             fetchDataAndCreateChart("/vci", "VCI", "VCI", "chartRequestVci", "VCI", "vci_id");
-            fetchDataAndCreateChart("/evi", "EVI", "EVI", "chartRequestEvi", "EVI", "evi_id");
-            fetchDataAndCreateChart("/evi", "MSI", "MSI", "chartRequestMsi", "MSI", "msi_id");
+            // fetchDataAndCreateChart("/evi", "EVI", "EVI", "chartRequestEvi", "EVI", "evi_id");
+            // fetchDataAndCreateChart("/evi", "MSI", "MSI", "chartRequestMsi", "MSI", "msi_id");
         });
     }
     // Call the func

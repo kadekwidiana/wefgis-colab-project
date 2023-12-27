@@ -55,11 +55,11 @@
                 <ol
                     class="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4 rtl:space-x-reverse">
                     <li id="stepper1" class="flex items-center text-blue-600 dark:text-blue-500">
-                        <span
+                        {{-- <span
                             class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                             1
-                        </span>
-                        Personal <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                        </span> --}}
+                        Step 1 <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                         <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -67,24 +67,24 @@
                         </svg>
                     </li>
                     <li id="stepper2" class="flex items-center">
-                        <span
+                        {{-- <span
                             class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
                             2
-                        </span>
-                        Account <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                        </span> --}}
+                        Step 2 <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                         <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m7 9 4-4-4-4M1 9l4-4-4-4" />
                         </svg>
                     </li>
-                    <li id="stepper3" class="flex items-center">
+                    {{-- <li id="stepper3" class="flex items-center">
                         <span
                             class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
                             3
                         </span>
                         Review
-                    </li>
+                    </li> --}}
                 </ol>
             </div>
         </div>
@@ -113,16 +113,16 @@
                             <label for="regency_id"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Regency</label>
                             <div>
-                            <select id="regency_id" name="regency_id"
-                                class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                required>
-                                <option value="" disabled selected>Select Regency</option>
-                                @foreach ($regencies as $regency)
-                                    <option value="{{ $regency->regency_id }}">{{ $regency->regency_id }}
-                                        {{ $regency->regency }}</option>
-                                @endforeach
-                                <!-- Add more options as needed -->
-                            </select>
+                                <select id="regency_id" name="regency_id"
+                                    class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required>
+                                    <option value="" disabled selected>Select Regency</option>
+                                    @foreach ($regencies as $regency)
+                                        <option value="{{ $regency->regency_id }}">{{ $regency->regency_id }}
+                                            {{ $regency->regency }}</option>
+                                    @endforeach
+                                    <!-- Add more options as needed -->
+                                </select>
                             </div>
                         </div>
                         <div class="flex space-x-4">
@@ -131,7 +131,7 @@
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
                                 <input type="text" id="latitude" name="latitude"
                                     class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Latitude" required value="{{ old('latitude') }}">
+                                    placeholder="Latitude" required value="{{ old('latitude') }}" readonly>
                             </div>
 
                             <div class="flex-1 mb-3">
@@ -139,7 +139,7 @@
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
                                 <input type="text" id="longitude" name="longitude"
                                     class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Longitude" required value="{{ old('longtitude') }}">
+                                    placeholder="Longitude" required value="{{ old('longtitude') }}" readonly>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -148,7 +148,7 @@
                             </label>
                             <input type="text" id="altitude" name="altitude"
                                 class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Altitude" required value="{{ old('altitude') }}">
+                                placeholder="Altitude" required value="{{ old('altitude') }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="address"
@@ -156,7 +156,7 @@
                             </label>
                             <textarea name="address" id="address" cols="10" rows="2"
                                 class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Address">{{ Request::old('address') }}</textarea>
+                                placeholder="Address" readonly>{{ Request::old('address') }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="aoi"
@@ -164,7 +164,7 @@
                             </label>
                             <textarea name="aoi" id="aoi" cols="10" rows="3"
                                 class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Geometry" value="{{ old('aoi') }}">{{ Request::old('aoi') }}</textarea>
+                                placeholder="Geometry" value="{{ old('aoi') }}" readonly>{{ Request::old('aoi') }}</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -173,7 +173,7 @@
                             </label>
                             <input type="text" id="wide" name="wide"
                                 class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Wide" required value="{{ old('wide') }}">
+                                placeholder="Wide" required value="{{ old('wide') }}" readonly>
                         </div>
 
                         {{-- <div class="flex justify-end space-x-4">
@@ -238,6 +238,135 @@
 
                         </div>
 
+                        {{-- <div class="mb-3">
+                            <div>
+                                <label for="photo"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo
+                                </label>
+                                <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                                <input type="file" id="photo" name="photo"
+                                    onchange="previewImage('#photo', '.img-preview1')"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    placeholder="Photo" required>
+                            </div>
+
+
+                        </div> --}}
+
+                        {{-- <div class="mb-3">
+                            <label for="related_photo"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
+                            </label>
+                            <img class="img-preview2 img-fluid mb-3 col-sm-5">
+                            <input type="file" id="related_photo" name="related_photo"
+                                onchange="previewImage('#related_photo', '.img-preview2')"
+                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                placeholder="Related Photo" required>
+                        </div> --}}
+                        <div class="hidden mb-3">
+                            <label for="related_photo"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">related_photo
+                            </label>
+                            <input type="text" id="related_photo" name="related_photo"
+                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('related_photo')
+                                     border-red-500
+                                @enderror"
+                                placeholder="related_photo" required value="-">
+                            @error('related_photo')
+                                <div>
+                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                </div>
+                            @enderror
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="flex space-x-4">
+                            {{-- <div class="flex-1 mb-3">
+                                <label for="lc_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
+                                <select id="lc_id" name="lc_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required>
+
+                                    <option value="" disabled selected>select Land Cover</option>
+                                    @foreach ($landCovers as $lc)
+                                        <option value="{{ $lc->lc_id }}">{{ $lc->lc_id }} {{ $lc->landcover }}
+                                            type:
+                                            {{ $lc->type }}</option>
+                                    @endforeach
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div> --}}
+                            <div class="hidden mb-3">
+                                <label for="lc_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">lc_id
+                                </label>
+                                <input type="text" id="lc_id" name="lc_id"
+                                    class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('lc_id')
+                                         border-red-500
+                                    @enderror"
+                                    placeholder="lc_id" required value="1">
+                                @error('lc_id')
+                                    <div>
+                                        <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                    </div>
+                                @enderror
+
+                            </div>
+
+                            {{-- <div class="flex-1 mb-3">
+                                <label for="lu_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
+                                
+                                <select id="lu_id"
+                                    class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required name="lu_id[]" multiple>
+
+                                    @foreach ($landUses as $lu)
+                                        <option class="lu_option" value="{{ $lu->lu_id }}">{{ $lu->lu_id }}
+                                            {{ $lu->landuse }}
+                                        </option>
+                                    @endforeach
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div> --}}
+                            <div class="hidden mb-3">
+                                <label for="lu_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">lu_id
+                                </label>
+                                <input type="text" id="lu_id" name="lu_id"
+                                    class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('lu_id')
+                                         border-red-500
+                                    @enderror"
+                                    placeholder="lu_id" required value="1">
+                                @error('lu_id')
+                                    <div>
+                                        <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+                        <div class="hidden mb-3">
+                            <label for="permanence"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Permanence
+                            </label>
+                            <input type="text" id="permanence" name="permanence"
+                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('permanence')
+                                     border-red-500
+                                @enderror"
+                                placeholder="Permanence" required value="-">
+                            @error('permanence')
+                                <div>
+                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                </div>
+                            @enderror
+                        </div>
+
                         <div class="mb-3">
                             <div>
                                 <label for="photo"
@@ -253,73 +382,6 @@
 
                         </div>
 
-                        <div class="mb-3">
-                            <label for="related_photo"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
-                            </label>
-                            <img class="img-preview2 img-fluid mb-3 col-sm-5">
-                            <input type="file" id="related_photo" name="related_photo"
-                                onchange="previewImage('#related_photo', '.img-preview2')"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Related Photo" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-
-                        <div class="flex space-x-4">
-                            <div class="flex-1 mb-3">
-                                <label for="lc_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
-                                <select id="lc_id" name="lc_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required>
-
-                                    <option value="" disabled selected>select Land Cover</option>
-                                    @foreach ($landCovers as $lc)
-                                        <option value="{{ $lc->lc_id }}">{{ $lc->lc_id }} {{ $lc->landcover }}
-                                            type:
-                                            {{ $lc->type }}</option>
-                                    @endforeach
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-
-                            <div class="flex-1 mb-3">
-                                <label for="lu_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
-                                {{-- class="land-use-select"  --}}
-                                {{-- class untuk mengunakan library multiple select --}}
-                                {{-- multiple="multiple" --}}
-                                <select id="lu_id"
-                                    class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required name="lu_id[]" multiple>
-
-                                    @foreach ($landUses as $lu)
-                                        <option class="lu_option" value="{{ $lu->lu_id }}">{{ $lu->lu_id }}
-                                            {{ $lu->landuse }}
-                                        </option>
-                                    @endforeach
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="permanence"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Permanence
-                            </label>
-                            <input type="text" id="permanence" name="permanence"
-                                class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('permanence')
-                                     border-red-500
-                                @enderror"
-                                placeholder="Permanence" required value="{{ old('permanence') }}">
-                            @error('permanence')
-                                <div>
-                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
-                                </div>
-                            @enderror
-                        </div>
                         <div class="mb-3">
                             <label for="description"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Description
@@ -385,10 +447,11 @@
 
         }
 
-        
 
-       
+
+
         let isValid = true;
+
         function validateInput() {
             $('.error-message').remove();
             isValid = true;

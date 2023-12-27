@@ -53,17 +53,22 @@
                 <table class="table-auto w-full text-left">
                     <thead>
                         <tr>
+                            <th class="px-4 py-2 border-r">No</th>
                             <th class="px-4 py-2 border-r">Group Name</th>
                             <th class="px-4 py-2 border-r">Name</th>
-                            <th class="px-4 py-2 border-r">Url</th>
-                            <th class="px-4 py-2 border-r">attribute</th>
+                            <th class="px-4 py-2 border-r">Url Wms</th>
+                            <th class="px-4 py-2 border-r">Attribute</th>
                             <th class="px-4 py-2 border-r">Description</th>
                             <th class="px-4 py-2 text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 overflow-hidden">
                         @foreach ($spatials as $spatial)
+                            @php
+                                $nomor_item = $loop->iteration + $spatials->firstItem() - 1;
+                            @endphp
                             <tr class = "normal-case">
+                                <td class="border border-l-0 px-4 py-2">{{ $nomor_item }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $spatial->spatialGroup->name }}</td>
                                 <td class="border border-l-0 px-4 py-2">
                                     <a href="{{ route('spatial.show', $spatial->sp_id) }}">{{ $spatial->name }}</a>

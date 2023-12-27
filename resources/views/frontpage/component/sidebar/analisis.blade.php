@@ -106,7 +106,7 @@
 
                 </div>
             </div>
-            <div class="">
+            {{-- <div class="">
                 <div class="form-check">
                     <input name="evi" class="form-check-input border border-secondary d-none" type="checkbox"
                         value="" id="evi_id" data-layer="evi">
@@ -151,7 +151,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

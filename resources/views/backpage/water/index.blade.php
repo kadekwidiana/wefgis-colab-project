@@ -105,8 +105,7 @@
                             <tr class = "normal-case">
                                 <td class="border border-l-0 px-4 py-2">{{ $nomor_item }}</td>
                                 <td class="border border-l-0 px-4 py-2">{{ $water->name }}</td>
-                                <td class="border border-l-0 px-4 py-2">{{ $water->regency->regency }},
-                                    {{ $water->regency->province }}</td>
+                                <td class="border border-l-0 px-4 py-2">{{ $water->regency->regency }}</td>
                                 {{-- <td class="border border-l-0 px-4 py-2"><img src="{{ asset('storage/' . $water->photo) }}"
                                         width="200" alt=""></td> --}}
                                 <td class="border border-l-0 px-4 py-2">{{ $water->status_area }}</td>
@@ -173,7 +172,7 @@
 
             // $.ajax({
             //     type: "get",
-            //     url: {{  route('water.index') }},
+            //     url: {{ route('water.index') }},
             //     data: {'search':$value},
             //     // dataType: "dataType",
             //     success: function (data) {

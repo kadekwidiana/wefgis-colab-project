@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CropChachoengsao;
 use App\Models\Spatial;
 use App\Models\SpatialGroup;
+use App\Models\Water;
 use Illuminate\Http\Request;
 
 class MapController extends Controller
@@ -14,10 +15,12 @@ class MapController extends Controller
     {
         $results = CropChachoengsao::all();
         $spatials = Spatial::all();
+        $waters = Water::all();
         $spatialGroups = SpatialGroup::all();
         return view('frontpage.maps', compact([
             'results',
             'spatials',
+            'waters',
             'spatialGroups'
         ]));
     }

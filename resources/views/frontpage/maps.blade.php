@@ -27,6 +27,11 @@
                     id="select_layer_nakhon" data-layer="select_layer">
                 <strong>Nakhon Pathom</strong>
             </div>
+            <div class="h6 text-dark">
+                <input name="select_layer" class="form-check-input border border-secondary" type="radio" value="bali"
+                    id="select_layer_bali" data-layer="select_layer">
+                <strong>Bali</strong>
+            </div>
             <div class="border mb-2"></div>
             <div class="col pb-4">
                 {{-- LAYER CHACHOENGSAO --}}
@@ -98,8 +103,8 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input name="palm" class="form-check-input border border-secondary" type="checkbox"
-                                        value="" id="point_palm" data-layer="palm">
+                                    <input name="palm" class="form-check-input border border-secondary"
+                                        type="checkbox" value="" id="point_palm" data-layer="palm">
                                     <label class="form-check-label" for="point_palm">
                                         Palm
                                     </label>
@@ -141,7 +146,7 @@
                         <!-- Tambahkan item lain di sini -->
                     </div>
 
-                    <div class="border rounded mt-2">
+                    <div class="border rounded mt-2 d-none">
                         <!-- <div class="border-top"></div> -->
                         <a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#GEE_chachoengsao"
                             role="button" aria-expanded="false" aria-controls="GEE_chachoengsao">
@@ -247,6 +252,31 @@
                     @endforeach
 
                 </div>
+
+                {{-- LAYER BALI --}}
+                <div id="layer_bali" class="d-none">
+                    {{-- layer bali --}}
+                    <div class="border rounded mt-2">
+                        <!-- <div class="border-top"></div> -->
+                        <p class="bg-secondary p-2 m-0 rounded-top fw-bold">
+                            <a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#id-grbali"
+                                role="button" aria-expanded="false" aria-controls="bali">Data Area
+                                <i class="fas fa-angle-down text-white"></i>
+                            </a>
+                        </p>
+                        <div class="collapse" id="id-grbali">
+                            <div class="p-2">
+                                <div class="form-check">
+                                    <input name="data-area" class="form-check-input border border-secondary"
+                                        type="checkbox" value="" id="checkboxIdArea" data-layer="data-area">
+                                    <label class="form-check-label" for="data-area">
+                                        Data Area
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Content -->
@@ -281,6 +311,44 @@
             // console.log('{{ $item->url }}');
             layerWmsAndControl('{{ $item->url }}', '{{ $item->name }}', '{{ $item->attribute }}',
                 'checkboxId{{ $item->sp_id }}')
+        @endforeach
+
+        // LAYER DATA AREA
+        // func for display layer wms and control
+        function layerDataArea(urlWms, layerName, attr, chkbxId) {
+            // layer WMS to map
+            const wmsLayer = L.tileLayer.wms(urlWms, {
+                layers: layerName, // name layer
+                format: 'image/png',
+                attribution: attr,
+                transparent: true,
+            });
+
+            document.getElementById(chkbxId).addEventListener('change', function() {
+                if (this.checked) {
+                    map.addLayer(wmsLayer);
+                } else {
+                    map.removeLayer(wmsLayer);
+                }
+            });
+        }
+        var dataArea = L.layerGroup();
+        // data spatial
+        @foreach ($waters as $item)
+            L.marker(['{{ $item->latitude }}', '{{ $item->longitude }}']).addTo(dataArea)
+                .bindPopup(`{{ $item->name }}, \n {{ $item->address }}`);
+
+            var polygon = L.geoJSON({!! $item->aoi !!}).addTo(dataArea);
+            // layerWmsAndControl('{{ $item->url }}', '{{ $item->name }}', '{{ $item->attribute }}',
+            //     'checkboxId{{ $item->sp_id }}')
+
+            document.getElementById('checkboxIdArea').addEventListener('change', function() {
+                if (this.checked) {
+                    map.addLayer(dataArea);
+                } else {
+                    map.removeLayer(dataArea);
+                }
+            });
         @endforeach
     </script>
 @endsection

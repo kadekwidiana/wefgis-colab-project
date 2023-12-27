@@ -14,7 +14,7 @@
         </div>
         <!-- end sidebar toggle -->
 
-        <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">homes</p>
+        <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">home</p>
 
         <!-- link -->
         <a href="/dashboard"
@@ -30,40 +30,40 @@
         <a href="/water"
             class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-envelope-open-text text-xs mr-2"></i>
-            water
+            area
         </a>
         <!-- end link -->
 
         <!-- link -->
-        <a href="#"
+        {{-- <a href="#"
             class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-comments text-xs mr-2"></i>
             Regency
-        </a>
+        </a> --}}
         <!-- end link -->
 
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">Spatial Data</p>
 
         <!-- link -->
-        <a href="./email.html"
+        {{-- <a href="./email.html"
             class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-envelope-open-text text-xs mr-2"></i>
             Land Use
-        </a>
+        </a> --}}
         <!-- end link -->
         <!-- link -->
-        <a href="./email.html"
+        {{-- <a href="./email.html"
             class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-envelope-open-text text-xs mr-2"></i>
             Land Cover
-        </a>
+        </a> --}}
         <!-- end link -->
         <!-- link -->
-        <a href="{{ route('spatialGroup.index') }}"
+        {{-- <a href="{{ route('spatialGroup.index') }}"
             class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-envelope-open-text text-xs mr-2"></i>
             spatial grup
-        </a>
+        </a> --}}
         <!-- end link -->
 
         <!-- link -->

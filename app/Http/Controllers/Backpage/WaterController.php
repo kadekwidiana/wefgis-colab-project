@@ -16,7 +16,7 @@ class WaterController extends Controller
 {
     public function index()
     {
-        $perPage = 3;
+        $perPage = 10;
         $currentPage = request()->query('page', 1);
         $offset = ($currentPage - 1) * $perPage;
 
@@ -97,14 +97,14 @@ class WaterController extends Controller
             $photoPath = $file->storeAs('water-photo', $originalName);
             $data['photo'] = $photoPath;
         }
-        if ($request->file('related_photo')) {
-            // $data['related_photo'] = $request->file('related_photo')->store('water-related-photo');
+        // if ($request->file('related_photo')) {
+        //     // $data['related_photo'] = $request->file('related_photo')->store('water-related-photo');
 
-            $file = $request->file('related_photo');
-            $originalName = $file->getClientOriginalName();
-            $photoPath = $file->storeAs('water-related-photo', $originalName);
-            $data['related_photo'] = $photoPath;
-        }
+        //     $file = $request->file('related_photo');
+        //     $originalName = $file->getClientOriginalName();
+        //     $photoPath = $file->storeAs('water-related-photo', $originalName);
+        //     $data['related_photo'] = $photoPath;
+        // }
         $data['lu_id'] = json_encode($request->lu_id);
 
         Water::create($data);
@@ -138,7 +138,8 @@ class WaterController extends Controller
         $water = Water::findOrFail($id);
         $rules = [
             'regency_id' => 'required|exists:regencies,regency_id',
-            'lu_id' => 'required|exists:land_uses,lu_id',
+            // 'lu_id' => 'required|exists:land_uses,lu_id',
+            'lu_id.*' => 'required',
             'lc_id' => 'required|exists:land_covers,lc_id',
             'name' => 'required|max:45',
             'latitude' => 'required|max:45',
@@ -179,9 +180,9 @@ class WaterController extends Controller
         if ($request->hasfile('photo')) {
             $rules['photo'] = 'required';
         }
-        if ($request->hasfile('related_photo')) {
-            $rules['related_photo'] = 'required';
-        }
+        // if ($request->hasfile('related_photo')) {
+        //     $rules['related_photo'] = 'required';
+        // }
         $validatedData = $request->validate($rules);
 
 
@@ -201,19 +202,19 @@ class WaterController extends Controller
             }
         }
 
-        if ($request->hasfile('related_photo')) {
-            if ($request->oldRelatedPhoto) {
-                $oldPhotoPath = $request->oldRelatedPhoto;
-                if (file_exists($oldPhotoPath)) {
-                    unlink($oldPhotoPath);
-                }
-                $file = $request->file('related_photo');
-                $originalName = $file->getClientOriginalName();
-                $photoPath = $file->storeAs('water-related-photo', $originalName);
-                $validatedData['related_photo'] = $photoPath;
-            }
-            // $validatedData['related_photo'] = $request->file('related_photo')->store('water-related-photo');
-        }
+        // if ($request->hasfile('related_photo')) {
+        //     if ($request->oldRelatedPhoto) {
+        //         $oldPhotoPath = $request->oldRelatedPhoto;
+        //         if (file_exists($oldPhotoPath)) {
+        //             unlink($oldPhotoPath);
+        //         }
+        //         $file = $request->file('related_photo');
+        //         $originalName = $file->getClientOriginalName();
+        //         $photoPath = $file->storeAs('water-related-photo', $originalName);
+        //         $validatedData['related_photo'] = $photoPath;
+        //     }
+        //     // $validatedData['related_photo'] = $request->file('related_photo')->store('water-related-photo');
+        // }
         $water->update($validatedData);
 
         return redirect()->route('water.index')->with('success', 'Water area updated successfully.');

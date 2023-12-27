@@ -21,11 +21,11 @@
                 <ol
                     class="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4 rtl:space-x-reverse">
                     <li id="stepper1" class="flex items-center text-blue-600 dark:text-blue-500">
-                        <span
+                        {{-- <span
                             class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                             1
-                        </span>
-                        Personal <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                        </span> --}}
+                        Step 1 <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                         <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,24 +33,24 @@
                         </svg>
                     </li>
                     <li id="stepper2" class="flex items-center">
-                        <span
+                        {{-- <span
                             class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
                             2
-                        </span>
-                        Account <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                        </span> --}}
+                        Step 2 <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                         <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m7 9 4-4-4-4M1 9l4-4-4-4" />
                         </svg>
                     </li>
-                    <li id="stepper3" class="flex items-center">
+                    {{-- <li id="stepper3" class="flex items-center">
                         <span
                             class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
                             3
                         </span>
                         Review
-                    </li>
+                    </li> --}}
                 </ol>
             </div>
         </div>
@@ -67,7 +67,7 @@
                             </label>
                             <input type="text" id="name" name="name"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Name" required value="{{ old('name', $water->name) }}">
+                                placeholder="Name" required value="{{ old('name', $water->name) }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="regency_id"
@@ -90,14 +90,16 @@
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Latitude</label>
                                 <input type="text" id="latitude" name="latitude"
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Latitude" required value="{{ old('latitude', $water->latitude) }}">
+                                    placeholder="Latitude" required value="{{ old('latitude', $water->latitude) }}"
+                                    readonly>
                             </div>
                             <div class="flex-1 mb-3">
                                 <label for="longitude"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Longitude</label>
                                 <input type="text" id="longitude" name="longitude"
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Longitude" required value="{{ old('longitude', $water->longitude) }}">
+                                    placeholder="Longitude" required value="{{ old('longitude', $water->longitude) }}"
+                                    readonly>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -106,7 +108,7 @@
                             </label>
                             <input type="text" id="altitude" name="altitude"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Altitude" required value="{{ old('altitude', $water->altitude) }}">
+                                placeholder="Altitude" required value="{{ old('altitude', $water->altitude) }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="address"
@@ -114,7 +116,7 @@
                             </label>
                             <textarea name="address" id="address" cols="10" rows="2"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                required placeholder="Address">{{ $water->address }}</textarea>
+                                required placeholder="Address" readonly>{{ $water->address }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="aoi"
@@ -122,7 +124,7 @@
                             </label>
                             <textarea name="aoi" id="aoi" cols="10" rows="3"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                required placeholder="Geometry">{{ $water->aoi }}</textarea>
+                                required placeholder="Geometry" readonly>{{ $water->aoi }}</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -131,7 +133,7 @@
                             </label>
                             <input type="text" id="wide" name="wide"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Wide" required value="{{ $water->wide }}">
+                                placeholder="Wide" required value="{{ $water->wide }}" readonly>
                         </div>
 
                         {{-- <div class="flex justify-end space-x-4">
@@ -192,7 +194,7 @@
 
                         </div>
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="related_photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
                             </label>
@@ -207,6 +209,15 @@
                                 onchange="previewImage('#related_photo', '.img-preview2')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Related Photo" value="{{ old($water->related_photo) }}">
+                        </div> --}}
+                        <div class="mb-3">
+                            <label for="related_photo"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
+                            </label>
+                            <input type="text" id="related_photo" name="related_photo"
+                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                placeholder="Ownership" required
+                                value="{{ old('related_photo', $water->related_photo) }}">
                         </div>
                     </div>
                 </div>
@@ -214,7 +225,7 @@
                     <div class="card-body">
 
                         <div class="flex space-x-4">
-                            <div class="flex-1 mb-3">
+                            {{-- <div class="flex-1 mb-3">
                                 <label for="lc_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
                                 <select id="lc_id" name="lc_id"
@@ -230,29 +241,41 @@
                                     @endforeach
                                     <!-- Add more options as needed -->
                                 </select>
+                            </div> --}}
+                            <div class="mb-3">
+                                <label for="lc_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover
+                                </label>
+                                <input type="text" id="lc_id" name="lc_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    placeholder="Ownership" required value="{{ old('lc_id', $water->lc_id) }}">
                             </div>
-                            <div class="flex-1 mb-3">
+
+                            {{-- <div class="flex-1 mb-3">
                                 <label for="lu_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
                                 <select id="lu_id"
                                     class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     required name="lu_id[]" multiple>
-                                    {{-- @foreach ($landUses as $lu)
-                                        <option class="lu_option" value="{{ $lu->lu_id }}" {{ in_array($lu->lu_id, $data) ? 'selected' : '' }}>
-                                            {{ $lu->lu_id }} {{ $lu->landuse }}
-                                        </option>
-                                    @endforeach --}}
-
+                                   
                                     @foreach ($landUses as $lu)
                                         <option value="{{ $lu->lu_id }}"
                                             {{ in_array($lu->lu_id, json_decode($water->lu_id, true)) ? 'selected' : '' }}>
                                             {{ $lu->lu_id }} {{ $lu->landuse }}
                                         </option>
                                     @endforeach
-                                    
+
 
                                     <!-- Add more options as needed -->
                                 </select>
+                            </div> --}}
+                            <div class="mb-3">
+                                <label for="lu_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use
+                                </label>
+                                <input type="text" id="lu_id" name="lu_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    placeholder="Ownership" required value="{{ old('lu_id', $water->lu_id) }}">
                             </div>
 
 
