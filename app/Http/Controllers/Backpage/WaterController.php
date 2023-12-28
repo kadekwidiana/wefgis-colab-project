@@ -109,7 +109,7 @@ class WaterController extends Controller
 
         Water::create($data);
 
-        return redirect()->route('water.index')->with('success', 'Water area created successfully.');
+        return redirect()->route('water.index')->with('success', 'Data area created successfully.');
     }
 
     public function show($id)
@@ -217,7 +217,7 @@ class WaterController extends Controller
         // }
         $water->update($validatedData);
 
-        return redirect()->route('water.index')->with('success', 'Water area updated successfully.');
+        return redirect()->route('water.index')->with('success', 'Data area updated successfully.');
     }
 
     public function destroy($id)
@@ -225,6 +225,6 @@ class WaterController extends Controller
         $water = Water::findOrFail($id);
         $water->delete();
 
-        return redirect()->route('water.index')->with('success', 'Water area deleted successfully.');
+        return redirect()->route('water.index')->with('success', 'Data area deleted successfully.');
     }
 }

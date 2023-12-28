@@ -44,8 +44,25 @@
         </div>
     </div>
 @endsection
+
 @section('content')
     {{-- modal delete  --}}
+    {{-- modal success --}}
+    <div>
+        <button id="modalButton" class="btn hidden" onclick="openModal()">Open Modal</button>
+        <!-- Modal -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Succes</h3>
+                <p class="py-4" id="modalMessage">Data berhasil di buat</p>
+                <div class="modal-action flex justify-end"> <!-- Tambahkan class "flex justify-end" -->
+                    <form method="dialog">
+                        <button class="btn" onclick="closeModal()">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </div>
 
     <!-- strat content -->
     <div class="bg-gray-100 flex-1 p-6 md:mt-16">
@@ -58,7 +75,7 @@
                     <div class="flex-grow">
                         <form class="" action="{{ route('water.index') }}">
                             <label for="default-search"
-                                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Cari</label>
+                                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                             <div class="relative flex items-center">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -66,10 +83,10 @@
                                 <div class="w-[600px]">
                                     <input type="search" id="default-search"
                                         class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Cari Nama..." name="search" value="{{ request('search') }}">
+                                        placeholder="Search data...." name="search" value="{{ request('search') }}">
                                 </div>
                                 <button id="buttonSearch" type="submit"
-                                    class="text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-20">Cari</button>
+                                    class="text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-20">Search</button>
                             </div>
                         </form>
                     </div>
@@ -204,5 +221,54 @@
                 modalDelete.classList.add('hidden')
             }
         }
+
+        function openModal() {
+            const modal = document.getElementById('my_modal_5');
+            modal.showModal();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('my_modal_5');
+            modal.close();
+        }
+
+        // Check for success message and toggle modal visibility
+        const successMessage = "{{ session('success') }}";
+        const modalButton = document.getElementById('modalButton');
+        const modalMessage = document.getElementById('modalMessage');
+
+        if (successMessage) {
+            // If success message exists, update modal message and show modal
+            modalMessage.innerText = successMessage;
+            openModal();
+        } else {
+            // If no success message, hide the modal button
+            modalButton.setAttribute('hidden', true);
+        }
+
+        // Fungsi untuk menampilkan modal
+        function showDeleteConfirmationModal() {
+            let modal = document.getElementById('deleteConfirmationModal');
+            modal.classList.remove('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dapatkan tombol-tombol di dalam modal
+            let confirmBtn = document.getElementById('confirmBtn');
+            let cancelBtn = document.getElementById('cancelBtn');
+            let deleteForm = document.getElementById('deleteForm');
+            let modal = document.getElementById('deleteConfirmationModal');
+
+            // Tambahkan event listener untuk tombol-tombol
+            confirmBtn.addEventListener('click', function() {
+                // Submit formulir saat tombol Delete di dalam modal diklik
+                deleteForm.submit();
+            });
+
+            cancelBtn.addEventListener('click', function() {
+                // Sembunyikan modal saat tombol Cancel di dalam modal diklik
+                modal.classList.add('hidden');
+            });
+        });
     </script>
 @endpush

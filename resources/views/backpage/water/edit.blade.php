@@ -174,25 +174,7 @@
                                 placeholder="Status Area" required value="{{ old('status_area', $water->status_area) }}">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="photo"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
-                            </label>
-                            <input type="hidden" name="oldPhoto" value="{{ $water->photo }}">
-                            @if ($water->photo)
-                                <img src="{{ asset('storage/' . $water->photo) }}"
-                                    class="img-preview1 img-fluid mb-3 col-sm-5">
-                            @else
-                                <img class="img-preview1 img-fluid mb-3 col-sm-5">
-                            @endif
 
-                            <input type="file" id="photo" name="photo"
-                                onchange="previewImage('#photo', '.img-preview1')"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light "
-                                placeholder="Photo" value="{{ old($water->photo) }}">
-
-
-                        </div>
 
                         {{-- <div class="mb-3">
                             <label for="related_photo"
@@ -210,7 +192,7 @@
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Related Photo" value="{{ old($water->related_photo) }}">
                         </div> --}}
-                        <div class="mb-3">
+                        <div class="mb-3 hidden">
                             <label for="related_photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
                             </label>
@@ -242,7 +224,7 @@
                                     <!-- Add more options as needed -->
                                 </select>
                             </div> --}}
-                            <div class="mb-3">
+                            <div class="mb-3 hidden">
                                 <label for="lc_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover
                                 </label>
@@ -269,7 +251,7 @@
                                     <!-- Add more options as needed -->
                                 </select>
                             </div> --}}
-                            <div class="mb-3">
+                            <div class="mb-3 hidden">
                                 <label for="lu_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use
                                 </label>
@@ -280,7 +262,7 @@
 
 
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 hidden">
                             <label for="permanence"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Permanence
                             </label>
@@ -288,6 +270,25 @@
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Permanence" required value="{{ old('permanence', $water->permanence) }}">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="photo"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
+                            </label>
+                            <input type="hidden" name="oldPhoto" value="{{ $water->photo }}">
+                            @if ($water->photo)
+                                <img src="{{ asset('storage/' . $water->photo) }}"
+                                    class="img-preview1 img-fluid mb-3 col-sm-5">
+                            @else
+                                <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                            @endif
+
+                            <input type="file" id="photo" name="photo"
+                                onchange="previewImage('#photo', '.img-preview1')"
+                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light "
+                                placeholder="Photo" value="{{ old($water->photo) }}">
+                        </div>
+
                         <div class="mb-3">
                             <label for="description"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Description

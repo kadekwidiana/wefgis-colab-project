@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </form>
-            <div class="card col-span-2" id="map" style="z-index: 2;">
+            <div class="card col-span-2" id="ma" style="z-index: 2;">
                 <div class="card-body">
 
                 </div>
