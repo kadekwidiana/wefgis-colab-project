@@ -14,7 +14,14 @@ class EndpointController extends Controller
     private $baseUrl = "http://rs.wefgis.com";
     public function pointCrop()
     {
-        $result = CropChachoengsao::all();
+        // $result = CropChachoengsao::all();
+        // return json_encode($result);
+
+        $result = DB::table('spatial__groups')
+        ->join('crop_chachoengsaos', 'spatial__groups.group_id', '=', 'crop_chachoengsaos.group_id')
+        ->where('spatial__groups.group_id', '=', 1)
+        ->select('spatial__groups.group_id', 'crop_chachoengsaos.*')
+        ->get();
         return json_encode($result);
     }
     public function pointNakhon()

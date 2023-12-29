@@ -125,6 +125,22 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="group_id"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Spatial Group</label>
+                            <div>
+                                <select id="group_id" name="group_id"
+                                    class="form-input1 shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required>
+                                    <option value="" disabled selected>Select Spatial Group</option>
+                                    @foreach ($spatialGroups as $spatialGroup)
+                                        <option value="{{ $spatialGroup->group_id }}">{{ $spatialGroup->group_id }}
+                                            {{ $spatialGroup->name }}</option>
+                                    @endforeach
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                        </div>
                         <div class="flex space-x-4">
                             <div class="flex-1 mb-3">
                                 <label for="latitude"
@@ -238,7 +254,7 @@
 
                         </div>
 
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <div>
                                 <label for="photo"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo
@@ -249,11 +265,9 @@
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     placeholder="Photo" required>
                             </div>
+                        </div>
 
-
-                        </div> --}}
-
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="related_photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
                             </label>
@@ -262,8 +276,8 @@
                                 onchange="previewImage('#related_photo', '.img-preview2')"
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Related Photo" required>
-                        </div> --}}
-                        <div class="hidden mb-3">
+                        </div>
+                        {{-- <div class="hidden mb-3">
                             <label for="related_photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">related_photo
                             </label>
@@ -278,14 +292,14 @@
                                 </div>
                             @enderror
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
 
                         <div class="flex space-x-4">
-                            {{-- <div class="flex-1 mb-3">
+                            <div class="flex-1 mb-3">
                                 <label for="lc_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
                                 <select id="lc_id" name="lc_id"
@@ -300,8 +314,8 @@
                                     @endforeach
                                     <!-- Add more options as needed -->
                                 </select>
-                            </div> --}}
-                            <div class="hidden mb-3">
+                            </div>
+                            {{-- <div class="hidden mb-3">
                                 <label for="lc_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">lc_id
                                 </label>
@@ -316,12 +330,12 @@
                                     </div>
                                 @enderror
 
-                            </div>
+                            </div> --}}
 
-                            {{-- <div class="flex-1 mb-3">
+                            <div class="flex-1 mb-3">
                                 <label for="lu_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
-                                
+
                                 <select id="lu_id"
                                     class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     required name="lu_id[]" multiple>
@@ -333,8 +347,8 @@
                                     @endforeach
                                     <!-- Add more options as needed -->
                                 </select>
-                            </div> --}}
-                            <div class="hidden mb-3">
+                            </div>
+                            {{-- <div class="hidden mb-3">
                                 <label for="lu_id"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">lu_id
                                 </label>
@@ -349,9 +363,9 @@
                                     </div>
                                 @enderror
 
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="hidden mb-3">
+                        <div class="mb-3">
                             <label for="permanence"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Permanence
                             </label>
@@ -359,7 +373,7 @@
                                 class="shadow-sm bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light  @error('permanence')
                                      border-red-500
                                 @enderror"
-                                placeholder="Permanence" required value="-">
+                                placeholder="Permanence" required value="">
                             @error('permanence')
                                 <div>
                                     <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
@@ -367,7 +381,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <div>
                                 <label for="photo"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo
@@ -378,9 +392,7 @@
                                     class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     placeholder="Photo" required>
                             </div>
-
-
-                        </div>
+                        </div> --}}
 
                         <div class="mb-3">
                             <label for="description"

@@ -57,6 +57,7 @@ const coorChachoengsao = [13.666790631230649, 101.35322935835381];
 const coorNakhon = [13.93136446765414, 100.086705447267];
 const coorBali = [-8.198517680287658, 115.10051848149178];
 
+
 // Initialize the map with the default basemap
 const map = L.map('map', {
     layers: googleHibridMap,
@@ -74,17 +75,33 @@ radioInputs.forEach(input => {
         const selectedLayer = this.value;
         // Update map view based on the selected layer
         // Display and  do not display div layer if selected input radio Chachoengsao or Nakhon
-        if (selectedLayer === "chachoengsao") {
+        // if (selectedLayer === "Chachoengsao") {
+        //     $('#layer_1').removeClass('d-none');
+        //     $('#layer_2').addClass('d-none');
+        //     $('#layer_3').addClass('d-none');
+        //     map.setView(coorChachoengsao, _zoom);
+        // } else if (selectedLayer === "Nakhon Phatom") {
+        //     $('#layer_1').addClass('d-none');
+        //     $('#layer_2').removeClass('d-none');
+        //     $('#layer_3').addClass('d-none');
+        //     map.setView(coorNakhon, _zoom);
+        // } else if (selectedLayer === "Bali") {
+        //     $('#layer_1').addClass('d-none');
+        //     $('#layer_2').addClass('d-none');
+        //     $('#layer_3').removeClass('d-none');
+        //     map.setView(coorBali, 11);
+        // }
+        if (selectedLayer === "Chachoengsao") {
             $('#layer_chachoengsao').removeClass('d-none');
             $('#layer_nakhon').addClass('d-none');
             $('#layer_bali').addClass('d-none');
             map.setView(coorChachoengsao, _zoom);
-        } else if (selectedLayer === "nakhon") {
+        } else if (selectedLayer === "Nakhon Phatom") {
             $('#layer_chachoengsao').addClass('d-none');
             $('#layer_nakhon').removeClass('d-none');
             $('#layer_bali').addClass('d-none');
             map.setView(coorNakhon, _zoom);
-        } else if (selectedLayer === "bali") {
+        } else if (selectedLayer === "Bali") {
             $('#layer_chachoengsao').addClass('d-none');
             $('#layer_nakhon').addClass('d-none');
             $('#layer_bali').removeClass('d-none');
@@ -432,8 +449,8 @@ $(document).ready(function () {
         $("#reqInfo").click(function () {
             fetchDataAndCreateChart("/precipitation", "precipitation", "Cumulative Rainfall (mm)", "chartRequestPrecipitation", "Precipitation", "precipitation_id");
             fetchDataAndCreateChart("/vci", "VCI", "VCI", "chartRequestVci", "VCI", "vci_id");
-            // fetchDataAndCreateChart("/evi", "EVI", "EVI", "chartRequestEvi", "EVI", "evi_id");
-            // fetchDataAndCreateChart("/evi", "MSI", "MSI", "chartRequestMsi", "MSI", "msi_id");
+            fetchDataAndCreateChart("/evi", "EVI", "EVI", "chartRequestEvi", "EVI", "evi_id");
+            fetchDataAndCreateChart("/evi", "MSI", "MSI", "chartRequestMsi", "MSI", "msi_id");
         });
     }
     // Call the func

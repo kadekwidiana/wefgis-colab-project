@@ -9,8 +9,14 @@ class CropChachoengsao extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'group_id',
         'latitude',
         'longitude',
         'class'
     ];
+
+    public function spatialGroup()
+    {
+        return $this->belongsTo(SpatialGroup::class, 'group_id');
+    }
 }

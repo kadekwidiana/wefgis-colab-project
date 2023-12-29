@@ -11,7 +11,7 @@ class Water extends Model
 
     protected $table = 'waters';
     protected $primaryKey = 'water_id';
-    protected $fillable = ['regency_id', 'lu_id', 'lc_id', 'name', 'latitude', 'longitude', 'altitude', 'address', 'wide', 'aoi', 'status_area', 'ownership', 'photo', 'permanence', 'description', 'related_photo'];
+    protected $fillable = ['regency_id', 'lu_id', 'lc_id', 'group_id', 'name', 'latitude', 'longitude', 'altitude', 'address', 'wide', 'aoi', 'status_area', 'ownership', 'photo', 'permanence', 'description', 'related_photo'];
 
     protected $casts = [
         'lu_id' => 'array',
@@ -29,6 +29,11 @@ class Water extends Model
     public function landCover()
     {
         return $this->belongsTo(LandCover::class, 'lc_id');
+    }
+
+    public function spatialGroup()
+    {
+        return $this->belongsTo(SpatialGroup::class, 'group_id');
     }
 
     public function scopeFilter($query, array $filter)

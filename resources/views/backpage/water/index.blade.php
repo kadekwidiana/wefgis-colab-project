@@ -146,7 +146,6 @@
                                             </button>
                                         </form>
                                     </div>
-
                                 </td>
                             </tr>
                         @endforeach

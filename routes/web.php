@@ -57,7 +57,6 @@ Route::post('/get-address', [EndpointController::class, 'getAddress'])->name('ge
 Route::get('/', [MapController::class, 'map'])->name('map');
 
 // BACKPAGE
-
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/water', WaterController::class);

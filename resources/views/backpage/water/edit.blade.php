@@ -174,103 +174,6 @@
                                 placeholder="Status Area" required value="{{ old('status_area', $water->status_area) }}">
                         </div>
 
-
-
-                        {{-- <div class="mb-3">
-                            <label for="related_photo"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
-                            </label>
-                            <input type="hidden" name="oldRelatedPhoto" value="{{ $water->related_photo }}">
-                            @if ($water->related_photo)
-                                <img src="{{ asset('storage/' . $water->related_photo) }}"
-                                    class="img-preview2 img-fluid mb-3 col-sm-5">
-                            @else
-                                <img class="img-preview2 img-fluid mb-3 col-sm-5">
-                            @endif
-                            <input type="file" id="related_photo" name="related_photo"
-                                onchange="previewImage('#related_photo', '.img-preview2')"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Related Photo" value="{{ old($water->related_photo) }}">
-                        </div> --}}
-                        <div class="mb-3 hidden">
-                            <label for="related_photo"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
-                            </label>
-                            <input type="text" id="related_photo" name="related_photo"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Ownership" required
-                                value="{{ old('related_photo', $water->related_photo) }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-
-                        <div class="flex space-x-4">
-                            {{-- <div class="flex-1 mb-3">
-                                <label for="lc_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
-                                <select id="lc_id" name="lc_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required>
-                                    <option value="" disabled selected>select Land Cover</option>
-                                    @foreach ($landCovers as $lc)
-                                        <option value="{{ $lc->lc_id }}"
-                                            {{ old('lu_id', $water->lc_id) == $lc->lc_id ? 'selected' : '' }}>
-                                            {{ $lc->lc_id }} {{ $lc->landcover }}
-                                            type:
-                                            {{ $lc->type }}</option>
-                                    @endforeach
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div> --}}
-                            <div class="mb-3 hidden">
-                                <label for="lc_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover
-                                </label>
-                                <input type="text" id="lc_id" name="lc_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Ownership" required value="{{ old('lc_id', $water->lc_id) }}">
-                            </div>
-
-                            {{-- <div class="flex-1 mb-3">
-                                <label for="lu_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
-                                <select id="lu_id"
-                                    class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    required name="lu_id[]" multiple>
-                                   
-                                    @foreach ($landUses as $lu)
-                                        <option value="{{ $lu->lu_id }}"
-                                            {{ in_array($lu->lu_id, json_decode($water->lu_id, true)) ? 'selected' : '' }}>
-                                            {{ $lu->lu_id }} {{ $lu->landuse }}
-                                        </option>
-                                    @endforeach
-
-
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div> --}}
-                            <div class="mb-3 hidden">
-                                <label for="lu_id"
-                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use
-                                </label>
-                                <input type="text" id="lu_id" name="lu_id"
-                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                    placeholder="Ownership" required value="{{ old('lu_id', $water->lu_id) }}">
-                            </div>
-
-
-                        </div>
-                        <div class="mb-3 hidden">
-                            <label for="permanence"
-                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Permanence
-                            </label>
-                            <input type="text" id="permanence" name="permanence"
-                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Permanence" required value="{{ old('permanence', $water->permanence) }}">
-                        </div>
-
                         <div class="mb-3">
                             <label for="photo"
                                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
@@ -288,6 +191,119 @@
                                 class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light "
                                 placeholder="Photo" value="{{ old($water->photo) }}">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="related_photo"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
+                            </label>
+                            <input type="hidden" name="oldRelatedPhoto" value="{{ $water->related_photo }}">
+                            @if ($water->related_photo)
+                                <img src="{{ asset('storage/' . $water->related_photo) }}"
+                                    class="img-preview2 img-fluid mb-3 col-sm-5">
+                            @else
+                                <img class="img-preview2 img-fluid mb-3 col-sm-5">
+                            @endif
+                            <input type="file" id="related_photo" name="related_photo"
+                                onchange="previewImage('#related_photo', '.img-preview2')"
+                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                placeholder="Related Photo" value="{{ old($water->related_photo) }}">
+                        </div>
+                        {{-- <div class="mb-3 hidden">
+                            <label for="related_photo"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Related Photo
+                            </label>
+                            <input type="text" id="related_photo" name="related_photo"
+                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                placeholder="Ownership" required
+                                value="{{ old('related_photo', $water->related_photo) }}">
+                        </div> --}}
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="flex space-x-4">
+                            <div class="flex-1 mb-3">
+                                <label for="lc_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover</label>
+                                <select id="lc_id" name="lc_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required>
+                                    <option value="" disabled selected>select Land Cover</option>
+                                    @foreach ($landCovers as $lc)
+                                        <option value="{{ $lc->lc_id }}"
+                                            {{ old('lu_id', $water->lc_id) == $lc->lc_id ? 'selected' : '' }}>
+                                            {{ $lc->lc_id }} {{ $lc->landcover }}
+                                            type:
+                                            {{ $lc->type }}</option>
+                                    @endforeach
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            {{-- <div class="mb-3 hidden">
+                                <label for="lc_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Cover
+                                </label>
+                                <input type="text" id="lc_id" name="lc_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    placeholder="Ownership" required value="{{ old('lc_id', $water->lc_id) }}">
+                            </div> --}}
+
+                            <div class="flex-1 mb-3">
+                                <label for="lu_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use</label>
+                                <select id="lu_id"
+                                    class=" land-use-select shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    required name="lu_id[]" multiple>
+
+                                    @foreach ($landUses as $lu)
+                                        <option value="{{ $lu->lu_id }}"
+                                            {{ in_array($lu->lu_id, json_decode($water->lu_id, true)) ? 'selected' : '' }}>
+                                            {{ $lu->lu_id }} {{ $lu->landuse }}
+                                        </option>
+                                    @endforeach
+
+
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            {{-- <div class="mb-3 hidden">
+                                <label for="lu_id"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Land Use
+                                </label>
+                                <input type="text" id="lu_id" name="lu_id"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    placeholder="Ownership" required value="{{ old('lu_id', $water->lu_id) }}">
+                            </div> --}}
+
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="permanence"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Permanence
+                            </label>
+                            <input type="text" id="permanence" name="permanence"
+                                class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                placeholder="Permanence" required value="{{ old('permanence', $water->permanence) }}">
+                        </div>
+
+                        {{-- <div class="mb-3">
+                                <label for="photo"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Photo
+                                </label>
+                                <input type="hidden" name="oldPhoto" value="{{ $water->photo }}">
+                                @if ($water->photo)
+                                    <img src="{{ asset('storage/' . $water->photo) }}"
+                                        class="img-preview1 img-fluid mb-3 col-sm-5">
+                                @else
+                                    <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                                @endif
+
+                                <input type="file" id="photo" name="photo"
+                                    onchange="previewImage('#photo', '.img-preview1')"
+                                    class="shadow-sm bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light "
+                                    placeholder="Photo" value="{{ old($water->photo) }}">
+                            </div> --}}
 
                         <div class="mb-3">
                             <label for="description"

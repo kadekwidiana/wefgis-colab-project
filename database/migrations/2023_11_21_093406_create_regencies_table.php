@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('regency_id');
             $table->string('regency', 45);
             $table->string('province', 45);
+            $table->string('center_coor', 100);
             $table->timestamps();
         });
     }

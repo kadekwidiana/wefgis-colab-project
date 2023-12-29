@@ -11,7 +11,7 @@ class Regency extends Model
 
     protected $table = 'regencies';
     protected $primaryKey = 'regency_id';
-    protected $fillable = ['regency', 'province'];
+    protected $fillable = ['regency', 'province', 'center_coor'];
 
     public function spatialGroups()
     {

@@ -8,6 +8,7 @@ use App\Models\Water;
 use App\Models\LandUse;
 use App\Models\Regency;
 use App\Models\LandCover;
+use App\Models\SpatialGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 // use Illuminate\Support\Facades\Route;
@@ -59,10 +60,11 @@ class WaterController extends Controller
     public function create()
     {
         $regencies = Regency::all();
+        $spatialGroups = SpatialGroup::all();
         $landUses = LandUse::all();
         $landCovers = LandCover::all();
 
-        return view('backpage.water.create', compact('regencies', 'landUses', 'landCovers'));
+        return view('backpage.water.create', compact('regencies', 'spatialGroups', 'landUses', 'landCovers'));
     }
 
     public function store(Request $request)
@@ -70,6 +72,7 @@ class WaterController extends Controller
         $data = $request->validate([
             // 'water_id' => 1,
             'regency_id' => 'required|exists:regencies,regency_id',
+            'group_id' => 'required|exists:spatial__groups,group_id',
             // 'lu_id' => 'array',
             'lu_id.*' => 'required',
             'lc_id' => 'required|exists:land_covers,lc_id',
@@ -122,6 +125,7 @@ class WaterController extends Controller
     {
         $water = Water::findOrFail($id);
         $regencies = Regency::all();
+        $spatialGroups = SpatialGroup::all();
         $landUses = LandUse::all();
         $landCovers = LandCover::all();
         $data = [
@@ -129,8 +133,7 @@ class WaterController extends Controller
             'lu_id' => json_decode($water->lu_id),
         ];
 
-
-        return view('backpage.water.edit', compact('water', 'regencies', 'landUses', 'landCovers', 'data'));
+        return view('backpage.water.edit', compact('water', 'regencies', 'spatialGroups', 'landUses', 'landCovers', 'data'));
     }
 
     public function update(Request $request, $id)
@@ -138,6 +141,7 @@ class WaterController extends Controller
         $water = Water::findOrFail($id);
         $rules = [
             'regency_id' => 'required|exists:regencies,regency_id',
+            'group_id' => 'required|exists:spatial__groups,group_id',
             // 'lu_id' => 'required|exists:land_uses,lu_id',
             'lu_id.*' => 'required',
             'lc_id' => 'required|exists:land_covers,lc_id',

@@ -17,9 +17,17 @@
 
         <!-- Sidebar layer -->
         <div class="container sidebar-layer bg-white mt-0 pb-5" id="sidebar-layer">
-            <div class="h6 text-dark">
-                <input name="select_layer" class="form-check-input border border-secondary" type="radio" value="chachoengsao"
-                    id="select_layer_chachoengsao" data-layer="select_layer" checked>
+            @foreach ($regencies as $regency)
+                <div class="h6 text-dark">
+                    <input name="select_layer" class="form-check-input border border-secondary" type="radio"
+                        value="{{ $regency->regency }}" id="{{ $regency->regency }}" data-layer="select_layer"
+                        {{ $regency->regency === 'Chachoengsao' ? 'checked' : '' }}>
+                    <strong>{{ $regency->regency }}</strong>
+                </div>
+            @endforeach
+            {{-- <div class="h6 text-dark">
+                <input name="select_layer" class="form-check-input border border-secondary" type="radio"
+                    value="chachoengsao" id="select_layer_chachoengsao" data-layer="select_layer" checked>
                 <strong>Chachoengsao</strong>
             </div>
             <div class="h6 text-dark">
@@ -31,9 +39,15 @@
                 <input name="select_layer" class="form-check-input border border-secondary" type="radio" value="bali"
                     id="select_layer_bali" data-layer="select_layer">
                 <strong>Bali</strong>
-            </div>
+            </div> --}}
             <div class="border mb-2"></div>
             <div class="col pb-4">
+                {{-- @foreach ($regencies as $regency)
+                    <div id="layer_{{ $regency->regency_id }}"
+                        class="{{ $regency->regency === 'Chachoengsao' ? '' : 'd-none' }}">
+                        Layer {{ $regency->regency }}
+                    </div>
+                @endforeach --}}
                 {{-- LAYER CHACHOENGSAO --}}
                 <div id="layer_chachoengsao" class="">
                     {{-- data from db Crop Chachoengsao --}}
@@ -103,16 +117,16 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input name="palm" class="form-check-input border border-secondary"
-                                        type="checkbox" value="" id="point_palm" data-layer="palm">
+                                    <input name="palm" class="form-check-input border border-secondary" type="checkbox"
+                                        value="" id="point_palm" data-layer="palm">
                                     <label class="form-check-label" for="point_palm">
                                         Palm
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input name="rubber" class="form-check-input border border-secondary"
-                                        type="checkbox" value="" id="point_rubber" data-layer="rubber">
+                                    <input name="rubber" class="form-check-input border border-secondary" type="checkbox"
+                                        value="" id="point_rubber" data-layer="rubber">
                                     <label class="form-check-label" for="point_rubber">
                                         Rubber
                                     </label>
@@ -146,7 +160,7 @@
                         <!-- Tambahkan item lain di sini -->
                     </div>
 
-                    <div class="border rounded mt-2 d-none">
+                    <div class="border rounded mt-2">
                         <!-- <div class="border-top"></div> -->
                         <a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#GEE_chachoengsao"
                             role="button" aria-expanded="false" aria-controls="GEE_chachoengsao">
@@ -277,6 +291,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- Content -->

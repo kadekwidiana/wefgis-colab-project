@@ -13,6 +13,10 @@ class SpatialGroup extends Model
     protected $primaryKey = 'group_id';
     protected $fillable = ['regency_id', 'name', 'active'];
 
+    public function water()
+    {
+        return $this->hasMany(Water::class, 'water_id');
+    }
     public function regency()
     {
         return $this->belongsTo(Regency::class, 'regency_id');
@@ -21,5 +25,10 @@ class SpatialGroup extends Model
     public function spatials()
     {
         return $this->hasMany(Spatial::class, 'group_id');
+    }
+
+    public function cropChacoengsaos()
+    {
+        return $this->hasMany(CropChachoengsao::class, 'group_id');
     }
 }
