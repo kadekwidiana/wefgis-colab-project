@@ -5,24 +5,50 @@ function createCustomIcon(iconUrl) {
         iconUrl: iconUrl,
         iconSize: [25, 32],
         iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
+        popupAnchor: [0, -32],
     });
 }
 
 // Define icons with use the func createCustomIcon
-const baresoilIcon = createCustomIcon('frontpage/assets/icons/icon-marker/baresoil.png');
-const cassavaIcon = createCustomIcon('frontpage/assets/icons/icon-marker/cassava.png');
-const cropIcon = createCustomIcon('frontpage/assets/icons/icon-marker/corn.png');
-const eucalyptusIcon = createCustomIcon('frontpage/assets/icons/icon-marker/eucalyptus.png');
-const forestIcon = createCustomIcon('frontpage/assets/icons/icon-marker/forest.png');
-const grasslandIcon = createCustomIcon('frontpage/assets/icons/icon-marker/grassland.png');
-const paddyIcon = createCustomIcon('frontpage/assets/icons/icon-marker/paddy.png');
-const palmIcon = createCustomIcon('frontpage/assets/icons/icon-marker/palm.png');
-const rubberIcon = createCustomIcon('frontpage/assets/icons/icon-marker/rubber.png');
-const settlementIcon = createCustomIcon('frontpage/assets/icons/icon-marker/gedung.png');
-const sugarcaneIcon = createCustomIcon('frontpage/assets/icons/icon-marker/sugarcan.png');
-const waterIcon = createCustomIcon('frontpage/assets/icons/icon-marker/water.png');
-const cornIcon = createCustomIcon('frontpage/assets/icons/icon-marker/corn.png');
+const baresoilIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/baresoil.png"
+);
+const cassavaIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/cassava.png"
+);
+const cropIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/corn.png"
+);
+const eucalyptusIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/eucalyptus.png"
+);
+const forestIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/forest.png"
+);
+const grasslandIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/grassland.png"
+);
+const paddyIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/paddy.png"
+);
+const palmIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/palm.png"
+);
+const rubberIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/rubber.png"
+);
+const settlementIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/gedung.png"
+);
+const sugarcaneIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/sugarcan.png"
+);
+const waterIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/water.png"
+);
+const cornIcon = createCustomIcon(
+    "frontpage/assets/icons/icon-marker/corn.png"
+);
 
 // Layer grup every type crop
 const cassava = L.layerGroup();
@@ -38,11 +64,12 @@ const settlement = L.layerGroup();
 const sugarcane = L.layerGroup();
 const water = L.layerGroup();
 
-// Event for checkbox 
+// Event for checkbox
 function checkboxEventListener(checkboxId, layer) {
-    document.getElementById(checkboxId).addEventListener('change', function () {
+    document.getElementById(checkboxId).addEventListener("change", function () {
         if (this.checked) {
             layer.addTo(map); // Dislay layer to map
+            // console.log("tes");
         } else {
             layer.removeFrom(map); // Remove layer
         }
@@ -50,36 +77,36 @@ function checkboxEventListener(checkboxId, layer) {
 }
 
 // Call the func for every checkbox and layer
-checkboxEventListener('point_corn', crop);
-checkboxEventListener('point_paddy', paddy);
-checkboxEventListener('point_baresoil', baresoil);
-checkboxEventListener('point_cassava', cassava);
-checkboxEventListener('point_eucalyptus', eucalyptus);
-checkboxEventListener('point_forest', forest);
-checkboxEventListener('point_grassland', grassland);
-checkboxEventListener('point_palm', palm);
-checkboxEventListener('point_rubber', rubber);
-checkboxEventListener('point_building', settlement);
-checkboxEventListener('point_sugarcane', sugarcane);
-checkboxEventListener('point_water', water);
+checkboxEventListener("point_Crop", crop);
+checkboxEventListener("point_Paddy", paddy);
+checkboxEventListener("point_Baresoil", baresoil);
+checkboxEventListener("point_Cassava", cassava);
+checkboxEventListener("point_Eucalyptus", eucalyptus);
+checkboxEventListener("point_Forest", forest);
+checkboxEventListener("point_Grassland", grassland);
+checkboxEventListener("point_Palm", palm);
+checkboxEventListener("point_Rubber", rubber);
+checkboxEventListener("point_Settlement", settlement);
+checkboxEventListener("point_Sugarcane", sugarcane);
+checkboxEventListener("point_Water", water);
 
 // Get data by database tb_crops
 $(document).ready(function () {
-    $.getJSON('/pointCrop', function (data) {
+    $.getJSON("/pointCrop", function (data) {
         // Create object to map the class with icons and groups
         const classToIcon = {
-            'Baresoil': { icon: baresoilIcon, group: baresoil },
-            'Cassava': { icon: cassavaIcon, group: cassava },
-            'Crop': { icon: cropIcon, group: crop },
-            'Paddy': { icon: paddyIcon, group: paddy },
-            'Eucalyptus': { icon: eucalyptusIcon, group: eucalyptus },
-            'Forest': { icon: forestIcon, group: forest },
-            'Grassland': { icon: grasslandIcon, group: grassland },
-            'Palm': { icon: palmIcon, group: palm },
-            'Rubber': { icon: rubberIcon, group: rubber },
-            'Settlement': { icon: settlementIcon, group: settlement },
-            'Sugarcane': { icon: sugarcaneIcon, group: sugarcane },
-            'Water': { icon: waterIcon, group: water }
+            Baresoil: { icon: baresoilIcon, group: baresoil },
+            Cassava: { icon: cassavaIcon, group: cassava },
+            Crop: { icon: cropIcon, group: crop },
+            Paddy: { icon: paddyIcon, group: paddy },
+            Eucalyptus: { icon: eucalyptusIcon, group: eucalyptus },
+            Forest: { icon: forestIcon, group: forest },
+            Grassland: { icon: grasslandIcon, group: grassland },
+            Palm: { icon: palmIcon, group: palm },
+            Rubber: { icon: rubberIcon, group: rubber },
+            Settlement: { icon: settlementIcon, group: settlement },
+            Sugarcane: { icon: sugarcaneIcon, group: sugarcane },
+            Water: { icon: waterIcon, group: water },
         };
 
         // Loop data for all class crop
@@ -91,7 +118,13 @@ $(document).ready(function () {
                 const icon = classToIcon[currentClass].icon;
                 const group = classToIcon[currentClass].group;
                 // Create marker with icon appropriate
-                const marker = L.marker([parseFloat(data[index].latitude), parseFloat(data[index].longitude)], { icon: icon });
+                const marker = L.marker(
+                    [
+                        parseFloat(data[index].latitude),
+                        parseFloat(data[index].longitude),
+                    ],
+                    { icon: icon }
+                );
                 // Content popup
                 const popupContent = `
                 <div class="popup-container">
@@ -133,40 +166,59 @@ $(document).ready(function () {
                 const popup = L.popup().setContent(popupContent);
                 // Add marker to gruplayer appropriate
                 marker.addTo(group).bindPopup(popup);
-                // Event click marker   
-                marker.on('click', function () {
-                    const addressPlaceholder = document.getElementById('address-placeholder');
-                    const phenologyPlaceholder = document.getElementById('phenology-placeholder');
+                // Event click marker
+                marker.on("click", function () {
+                    const addressPlaceholder = document.getElementById(
+                        "address-placeholder"
+                    );
+                    const phenologyPlaceholder = document.getElementById(
+                        "phenology-placeholder"
+                    );
                     // Get address with request to nominatim.openstreetmap API
-                    $.getJSON(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data[index].latitude}&lon=${data[index].longitude}&zoom=18&addressdetails=1`, function (data) {
-                        const address = data.display_name;
-                        addressPlaceholder.textContent = address;
-                    });
-                    $('#failed1').hide();
-                    $('#failed2').hide();
+                    $.getJSON(
+                        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${data[index].latitude}&lon=${data[index].longitude}&zoom=18&addressdetails=1`,
+                        function (data) {
+                            const address = data.display_name;
+                            addressPlaceholder.textContent = address;
+                        }
+                    );
+                    $("#failed1").hide();
+                    $("#failed2").hide();
 
                     // Get CRSF token from meta tag HTML
-                    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    const csrfToken = $('meta[name="csrf-token"]').attr(
+                        "content"
+                    );
 
                     const postData = {
-                        geometry: '[' + data[index].longitude + ',' + data[index].latitude + ']',
-                        type: 'point',
+                        geometry:
+                            "[" +
+                            data[index].longitude +
+                            "," +
+                            data[index].latitude +
+                            "]",
+                        type: "point",
                         startYear: 2020,
-                        endYear: 2022
+                        endYear: 2022,
                     };
                     postData._token = csrfToken;
 
                     // phenology crop
                     const dataPhenology = {
-                        point: '[' + data[index].longitude + ',' + data[index].latitude + ']',
+                        point:
+                            "[" +
+                            data[index].longitude +
+                            "," +
+                            data[index].latitude +
+                            "]",
                         year: 2023,
-                        month: 8
-                    }
+                        month: 8,
+                    };
                     dataPhenology._token = csrfToken;
 
                     $.ajax({
-                        type: 'POST',
-                        url: '/phenology_crop',
+                        type: "POST",
+                        url: "/phenology_crop",
                         data: JSON.stringify(dataPhenology),
                         contentType: "application/json",
                         success: function (response) {
@@ -176,11 +228,16 @@ $(document).ready(function () {
                         },
                         error: function (error) {
                             console.log("Fail:", error);
-                        }
-                    })
+                        },
+                    });
 
                     // Func parameter for take data and make chart
-                    function fetchDataAndCreateChart(url, responseKey, chartTitle, canvasId) {
+                    function fetchDataAndCreateChart(
+                        url,
+                        responseKey,
+                        chartTitle,
+                        canvasId
+                    ) {
                         $.ajax({
                             type: "POST",
                             url: url,
@@ -188,10 +245,10 @@ $(document).ready(function () {
                             contentType: "application/json",
                             success: function (response) {
                                 // Destroy based condition responseKey
-                                if (responseKey === 'precipitation') {
-                                    $('#loading1').addClass('d-none');
-                                } else if (responseKey === 'VCI') {
-                                    $('#loading2').addClass('d-none');
+                                if (responseKey === "precipitation") {
+                                    $("#loading1").addClass("d-none");
+                                } else if (responseKey === "VCI") {
+                                    $("#loading2").addClass("d-none");
                                 }
                                 // Take monthly data from response API
                                 const monthlyData = response.data;
@@ -209,7 +266,9 @@ $(document).ready(function () {
                                 // Loop through monthly data to group data into yearly data
                                 for (let i = 0; i < monthlyData.length; i++) {
                                     // Get the year of the data (assumes 'Year' or 'year' property)
-                                    const year = monthlyData[i].Year || monthlyData[i].year; // Adjust based on your response structure
+                                    const year =
+                                        monthlyData[i].Year ||
+                                        monthlyData[i].year; // Adjust based on your response structure
                                     // Get value which fits the data
                                     const value = monthlyData[i][dataKey];
                                     // If the year is not already in the yearlyData object, initialize an array for that year
@@ -233,11 +292,11 @@ $(document).ready(function () {
                                 const datasets = [];
                                 // Color based on year
                                 const colorMap = {
-                                    '2018': 'yellow',
-                                    '2019': 'orange',
-                                    '2020': 'red',
-                                    '2021': 'green',
-                                    '2022': 'blue'
+                                    2018: "yellow",
+                                    2019: "orange",
+                                    2020: "red",
+                                    2021: "green",
+                                    2022: "blue",
                                 };
                                 // Loop through yearly data
                                 for (const year in yearlyData) {
@@ -256,12 +315,17 @@ $(document).ready(function () {
                                 // Marker index based on data[index]
                                 const markerIndex = data[index].id;
                                 // Get element canvasId context 2d
-                                const ctx = document.getElementById(canvasId + markerIndex).getContext('2d');
+                                const ctx = document
+                                    .getElementById(canvasId + markerIndex)
+                                    .getContext("2d");
                                 // Create graph used Chart.js
                                 new Chart(ctx, {
-                                    type: 'line',
+                                    type: "line",
                                     data: {
-                                        labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], //label x (month)
+                                        labels: [
+                                            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                                            12,
+                                        ], //label x (month)
                                         datasets: datasets,
                                     },
                                     options: {
@@ -273,46 +337,53 @@ $(document).ready(function () {
                                             },
                                             y: {
                                                 // min and max condition
-                                                min: Math.min(...dataArray) - 20,
-                                                max: Math.max(...dataArray) + 50,
+                                                min:
+                                                    Math.min(...dataArray) - 20,
+                                                max:
+                                                    Math.max(...dataArray) + 50,
                                                 beginAtZero: true,
-                                            }
+                                            },
                                         },
                                         plugins: {
                                             title: {
                                                 display: true,
                                                 text: chartTitle,
-                                                position: 'top'
+                                                position: "top",
                                             },
                                             legend: {
                                                 display: true,
-                                                position: 'bottom',
+                                                position: "bottom",
                                                 labels: {
                                                     usePointStyle: true,
-                                                    pointStyle: 'circle',
+                                                    pointStyle: "circle",
                                                     pointRadius: 8,
-                                                }
-                                            }
-                                        }
-                                    }
+                                                },
+                                            },
+                                        },
+                                    },
                                 });
                             },
                             // Error handle
                             error: function (error) {
                                 console.log("Fail:", error);
                                 // Display if error based responseKey
-                                if (responseKey === 'precipitation') {
-                                    $('#loading1').addClass('d-none');
-                                    $('#failed1').show();
-                                } else if (responseKey === 'VCI') {
-                                    $('#loading2').addClass('d-none');
-                                    $('#failed2').show();
+                                if (responseKey === "precipitation") {
+                                    $("#loading1").addClass("d-none");
+                                    $("#failed1").show();
+                                } else if (responseKey === "VCI") {
+                                    $("#loading2").addClass("d-none");
+                                    $("#failed2").show();
                                 }
-                            }
+                            },
                         });
                     }
                     // Call Func fetchDataAndCreateChart() according to the parameters
-                    fetchDataAndCreateChart("/precipitation", "precipitation", "Cumulative Rainfall (mm)", "myChart1");
+                    fetchDataAndCreateChart(
+                        "/precipitation",
+                        "precipitation",
+                        "Cumulative Rainfall (mm)",
+                        "myChart1"
+                    );
                     fetchDataAndCreateChart("/vci", "VCI", "VCI", "myChart2");
                 });
             }

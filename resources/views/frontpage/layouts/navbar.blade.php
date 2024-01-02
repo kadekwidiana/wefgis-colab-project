@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #8b5cf6;">
     <div class="container">
         <a class="navbar-brand font-logo text-white d-flex align-items-center fw-bold" href="#"><img
-                src="{{ asset('frontpage/assets/icons/icon_web_wefgis.png') }}" alt="" style="width: 30px;">WEF
+                src="{{ asset("frontpage/assets/icons/icon_web_wefgis.png") }}" alt="" style="width: 30px;">WEF
             GIS</a>
 
         <div class="dflex">
@@ -27,7 +27,7 @@
                     <li class="nav-item mx-3">
                         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                             <li class="nav-item dropdown">
-                                @if (Route::has('login'))
+                                @if (Route::has("login"))
                                     @auth
                                         <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#"
                                             role="button" data-bs-toggle="dropdown"
@@ -40,7 +40,7 @@
                                 @endif
 
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if (Route::has('login'))
+                                    @if (Route::has("login"))
                                         @auth
                                             <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                                             <hr>

@@ -35,7 +35,6 @@
 
         @include('backpage.layouts.sidebar')
 
-
         {{-- content --}}
         @yield('content')
 

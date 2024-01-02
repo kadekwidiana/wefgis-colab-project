@@ -35,6 +35,8 @@ Route::get('/dashboard1', function () {
 require __DIR__ . '/auth.php';
 
 // ENDPOINT API
+// show data tes result
+Route::get('/data-test', [EndpointController::class, 'showData'])->name('show-data');
 // point crop chachoengsao
 Route::get('/pointCrop', [EndpointController::class, 'pointCrop'])->name('json-crop');
 // point spatial nakhon phatom
