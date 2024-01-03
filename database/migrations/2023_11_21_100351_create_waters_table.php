@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('regency_id'); 
             $table->foreign('regency_id')->references('regency_id')->on('regencies');
             $table->string('lu_id',100); 
-           
             $table->unsignedBigInteger('lc_id'); 
             $table->foreign('lc_id')->references('lc_id')->on('land_covers');
             $table->string('name', 45);

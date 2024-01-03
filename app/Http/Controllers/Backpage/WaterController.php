@@ -10,6 +10,7 @@ use App\Models\Regency;
 use App\Models\LandCover;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Alert;
 // use Illuminate\Support\Facades\Route;
 
 class WaterController extends Controller
@@ -86,8 +87,6 @@ class WaterController extends Controller
             'permanence' => 'required|max:100',
             'description' => 'required',
             'related_photo' => 'required',
-
-
         ]);
 
         if ($request->file('photo')) {
@@ -105,7 +104,16 @@ class WaterController extends Controller
             $photoPath = $file->storeAs('water-related-photo', $originalName);
             $data['related_photo'] = $photoPath;
         }
-        $data['lu_id'] = json_encode($request->lu_id);
+        // $data['lu_id'] = json_encode($request->lu_id);
+        Alert::success('succes title', 'Success Message');
+        // dd($request->lu_id);
+        // $data['lu_id'] = $request->lu_id;
+
+        // Mengambil nilai lu_id dari Collection
+        // $luId = $request->lu_id->toArray();
+
+        // Mengubah lu_id menjadi format array tanpa tanda petik
+        $data['lu_id'] = array_map('intval', $data['lu_id']);
 
         Water::create($data);
 
@@ -124,13 +132,13 @@ class WaterController extends Controller
         $regencies = Regency::all();
         $landUses = LandUse::all();
         $landCovers = LandCover::all();
-        $data = [
+        // $data = [
             
-            'lu_id' => json_decode($water->lu_id),
-        ];
+        //     'lu_id' => json_decode($water->lu_id),
+        // ];
 
 
-        return view('backpage.water.edit', compact('water', 'regencies', 'landUses', 'landCovers', 'data'));
+        return view('backpage.water.edit', compact('water', 'regencies', 'landUses', 'landCovers', ));
     }
 
     public function update(Request $request, $id)
@@ -214,7 +222,9 @@ class WaterController extends Controller
             }
             // $validatedData['related_photo'] = $request->file('related_photo')->store('water-related-photo');
         }
+        $validatedData['lu_id'] = array_map('intval', $validatedData['lu_id']);
         $water->update($validatedData);
+        alert()->success('Hore!', 'Data Updated Successfully');
 
         return redirect()->route('water.index')->with('success', 'Water area updated successfully.');
     }
@@ -223,6 +233,7 @@ class WaterController extends Controller
     {
         $water = Water::findOrFail($id);
         $water->delete();
+        alert()->success('Hore!', 'Data Deleted Successfully');
 
         return redirect()->route('water.index')->with('success', 'Water area deleted successfully.');
     }

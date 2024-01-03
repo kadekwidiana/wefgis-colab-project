@@ -73,11 +73,10 @@ class WaterController extends Controller
 
 
         $water = new Water($request->all());
-        $water->lu_id = $request->lu_id;
-        // Memastikan bahwa lu_id tersimpan sebagai array
-        // $water->lu_id = json_encode($request->lu_id);
-
-        // Handling photo and related_photo
+        // dd($water->lu_id);
+        // $water->lu_id = $request->lu_id;
+        // $water->lu_id = array_map('intval', $request->lu_id );
+        $water->lu_id = is_array($request->lu_id) ? $request->lu_id : json_decode($request->lu_id);
         $water->photo = $this->storeFile($request->file('photo'), 'water-photo');
         $water->related_photo = $this->storeFile($request->file('related_photo'), 'water-related-photo');
 
@@ -89,6 +88,8 @@ class WaterController extends Controller
             'success' => true
         ]);
     }
+
+
 
 
     private function storeFile($file, $storagePath)
@@ -179,6 +180,16 @@ class WaterController extends Controller
         $photo = $request->file('photo');
         $relatedPhoto = $request->file('related_photo');
 
+        // Pastikan bahwa lu_id dalam format array
+        $lu_id = is_array($request->get('lu_id')) ? $request->get('lu_id') : [];
+
+        // Jika lu_id diterima sebagai string terenkripsi, dekripsi menjadi array
+        // $lu_id = decrypt($request->get('lu_id'));
+
+        // Atur ulang nilai lu_id pada model Water
+        $water->lu_id = $lu_id;
+
+
         $water->update([
             'regency_id' => $request->get('regency_id'),
             'lu_id' => $request->get('lu_id'),
@@ -195,6 +206,8 @@ class WaterController extends Controller
             'permanence' => $request->get('permanence'),
             'description' => $request->get('description'),
         ]);
+
+
 
         // Update related_photo only if a new file is provided
         if ($relatedPhoto) {

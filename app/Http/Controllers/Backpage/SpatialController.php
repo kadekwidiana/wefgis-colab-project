@@ -7,6 +7,7 @@ use App\Models\Spatial;
 use App\Models\SpatialGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Alert;
 
 class SpatialController extends Controller
 {
@@ -17,7 +18,14 @@ class SpatialController extends Controller
      */
     public function index()
     {
-        $spatials = Spatial::latest()->paginate(2);
+        $perPage = 3;
+        $currentPage = request()->query('page', 1);
+        $offset = ($currentPage - 1) * $perPage;
+        $spatials = Spatial::latest()
+            ->filter(request(['search']))
+            ->skip($offset)
+            ->take($perPage)
+            ->paginate($perPage);
         return view('backpage.spatial.index', compact('spatials'));
     }
 
@@ -50,6 +58,7 @@ class SpatialController extends Controller
                 'description' => 'required|max:255',
             ]
         );
+        Alert::success('succes title', 'data succesfully stored');
 
         Spatial::create($request->all());
         return redirect()->route('spatial.index')->with('success', 'spatial data success to add');
@@ -99,8 +108,9 @@ class SpatialController extends Controller
         ]);
         $spatial = Spatial::findOrFail($sp_id);
         $spatial->update($request->all());
+        alert()->success('Hore!', 'Data Updated Successfully');
 
-        
+
         return redirect()->route('spatial.index')->with('success', 'Spatial updated successfully.');
     }
 
@@ -114,6 +124,7 @@ class SpatialController extends Controller
     {
         $spatial = Spatial::findOrFail($id);
         $spatial->delete();
+        alert()->success('Hore!', 'Data Deleted Successfully');
         return redirect()->route('spatial.index')->with('success', 'Spatial deleted successfully.');
     }
 }

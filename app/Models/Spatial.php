@@ -18,4 +18,19 @@ class Spatial extends Model
     {
         return $this->belongsTo(SpatialGroup::class, 'group_id');
     }
+
+
+    public function scopeFilter($query, array $filter)
+    {
+        if (isset($filter['search']) ? $filter['search'] : false) {
+            return $query->where('name', 'LIKE', '%' . request('search') . '%')
+                ->orwhere('description', 'LIKE', '%' . request('search') . '%');
+            ;
+        }
+
+        $query->when(($filter['search']) ?? false, function ($query, $search) {
+            return $query->where('name', 'LIKE', '%' . $search . '%')
+                ->orwhere('description', 'LIKE', '%' . $search . '%');
+        });
+    }
 }

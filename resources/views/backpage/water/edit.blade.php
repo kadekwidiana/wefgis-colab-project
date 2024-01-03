@@ -243,13 +243,22 @@
                                         </option>
                                     @endforeach --}}
 
-                                    @foreach ($landUses as $lu)
+                                    {{-- @foreach ($landUses as $lu)
                                         <option value="{{ $lu->lu_id }}"
                                             {{ in_array($lu->lu_id, json_decode($water->lu_id, true)) ? 'selected' : '' }}>
                                             {{ $lu->lu_id }} {{ $lu->landuse }}
                                         </option>
+                                    @endforeach --}}
+
+                                    @foreach ($landUses as $lu)
+                                        <option value="{{ $lu->lu_id }}"
+                                            {{ in_array($lu->lu_id, $water->lu_id) ? 'selected' : '' }}>
+                                            {{ $lu->lu_id }} {{ $lu->landuse }}
+                                        </option>
                                     @endforeach
-                                    
+
+
+
 
                                     <!-- Add more options as needed -->
                                 </select>

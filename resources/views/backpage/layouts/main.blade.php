@@ -25,9 +25,14 @@
     <!-- icon awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     @stack('addon-style')
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 </head>
 
 <body class="bg-gray-100">
+    @include('sweetalert::alert')
     @include('backpage.layouts.navbar')
 
     <!-- strat wrapper -->
