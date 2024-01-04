@@ -108,7 +108,11 @@ class WaterController extends Controller
         //     $photoPath = $file->storeAs('water-related-photo', $originalName);
         //     $data['related_photo'] = $photoPath;
         // }
-        $data['lu_id'] = json_encode($request->lu_id);
+        // $data['lu_id'] = json_encode($request->lu_id);
+        // Convert array to string before storing in the database
+        // $data['lu_id'] = implode(',', $request->lu_id);
+        $data['lu_id'] = $request->lu_id;
+
 
         Water::create($data);
 
@@ -129,7 +133,7 @@ class WaterController extends Controller
         $landUses = LandUse::all();
         $landCovers = LandCover::all();
         $data = [
-            
+
             'lu_id' => json_decode($water->lu_id),
         ];
 

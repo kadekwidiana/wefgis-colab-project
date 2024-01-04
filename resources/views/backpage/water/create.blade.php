@@ -459,9 +459,6 @@
 
         }
 
-
-
-
         let isValid = true;
 
         function validateInput() {
@@ -506,8 +503,6 @@
                 $('#stepper1').addClass('text-blue-600 dark:text-blue-500');
             }
         });
-
-
 
         function showSection1() {
             $('#form-section3').hide();
