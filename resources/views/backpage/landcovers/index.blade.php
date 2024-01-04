@@ -14,7 +14,7 @@
 
                 <div class="flex justify-between items-center card-header gap-4">
                     <div class="flex-grow">
-                        <form class="" action="{{ route('regency.index') }}">
+                        <form class="" action="{{ route('landcover.index') }}">
                             <label for="default-search"
                                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Cari</label>
                             <div class="relative flex items-center">
@@ -35,39 +35,39 @@
 
                     <div class="flex justify-center items-center">
 
-                        <a href="/regency/create" class="btn-bs-primary mr-6 lg:mr-0 lg:mb-6">Add Data</a>
+                        <a href="/landcover/create" class="btn-bs-primary mr-6 lg:mr-0 lg:mb-6">Add Data</a>
                     </div>
 
                 </div>
                 <table class="table-auto w-full text-left">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 border-r">Regency Id </th>
-                            <th class="px-4 py-2 border-r">Regency</th>
-                            <th class="px-4 py-2 border-r"> Province</th>
+                            <th class="px-4 py-2 border-r">Lc Id </th>
+                            <th class="px-4 py-2 border-r">Type</th>
+                            <th class="px-4 py-2 border-r"> Landcover</th>
                             <th class="px-4 py-2 border-r">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 overflow-hidden">
-                        @foreach ($regencies as $regency)
+                        @foreach ($landcovers as $landcover)
                             <tr class = "normal-case">
-                                <td class="border border-l-0 px-4 py-2">{{ $regency->regency_id }}</td>
+                                <td class="border border-l-0 px-4 py-2">{{ $landcover->lc_id }}</td>
 
-                                <td class="border border-l-0 px-4 py-2">{{ $regency->regency }}</td>
-                                <td class="border border-l-0  px-4 py-2">{{ $regency->province }}</td>
-                                
+                                <td class="border border-l-0 px-4 py-2">{{ $landcover->type }}</td>
+                                <td class="border border-l-0  px-4 py-2">{{ $landcover->landcover }}</td>
+                                {{-- <td class="border border-l-0  px-4 py-2">{{ $landcover->landcover }}</td> --}}
                                 <td class="border border-l-0 border-r-0 px-4 py-2">
 
                                     <div class="flex justify-center items-center gap-2">
-                                        <a href="{{ route('regency.edit', $regency->regency_id) }}">
+                                        <a href="{{ route('landcover.edit', $landcover->lc_id) }}">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <form id="deleteForm_{{ $regency->regency_id }}"
-                                            action="{{ route('regency.destroy', $regency->regency_id) }}" method="POST">
+                                        <form id="deleteForm_{{ $landcover->lc_id }}"
+                                            action="{{ route('landcover.destroy', $landcover->lc_id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="p-2"
-                                                onclick="showDeleteConfirmationModal('{{ $regency->regency_id }}')"><i
+                                                onclick="showDeleteConfirmationModal('{{ $landcover->lc_id }}')"><i
                                                     class="fas fa-trash"></i></button>
                                         </form>
                                     </div>
@@ -85,7 +85,7 @@
 
 
         <div class="flex justify-end items-end p-2">
-            {{-- {{ $landcovers->links() }} --}}
+            {{ $landcovers->links() }}
         </div>
     </div>
     <!-- end content -->

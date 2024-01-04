@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backpage;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Regency;
 use Illuminate\Http\Request;
 
 class RegencyController extends Controller
@@ -15,7 +16,16 @@ class RegencyController extends Controller
      */
     public function index()
     {
-        //
+        $perPage = 3;
+        $currentPage = request()->query('page', 1);
+        $offset = ($currentPage - 1) * $perPage;
+        $regencies = Regency::latest()
+            ->filter(request(['search']))
+            ->skip($offset)
+            ->take($perPage)
+            ->paginate($perPage);
+
+        return view('backpage.regency.index', compact('regencies'));
     }
 
     /**

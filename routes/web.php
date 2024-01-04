@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backpage\DashboardController;
+use App\Http\Controllers\Backpage\LandCoverController;
+use App\Http\Controllers\Backpage\RegencyController;
 use App\Http\Controllers\Backpage\SpatialGrupController;
 use App\Http\Controllers\Frontpage\CropChacoengsaoController;
 use App\Http\Controllers\Backpage\NakhonController;
@@ -63,6 +65,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/water', WaterController::class);
     Route::resource('/spatial', SpatialController::class);
     Route::resource('/spatialGroup', SpatialGrupController::class);
+    Route::resource('/landcover', LandCoverController::class);
+    Route::resource('/regency', RegencyController::class);
 });
 
 route::get('/loginn', function () {

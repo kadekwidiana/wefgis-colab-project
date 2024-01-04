@@ -17,4 +17,20 @@ class LandCover extends Model
     {
         return $this->hasMany(Water::class, 'lc_id');
     }
+
+
+    public function scopeFilter($query, array $filter)
+    {
+        if (isset($filter['search']) ? $filter['search'] : false) {
+            return $query->where('type', 'LIKE', '%' . request('search') . '%')
+                ->orwhere('landcover', 'LIKE', '%' . request('search') . '%');
+            ;
+        }
+
+        $query->when(($filter['search']) ?? false, function ($query, $search) {
+            return $query->where('type', 'LIKE', '%' . $search . '%')
+                ->orwhere('landcover', 'LIKE', '%' . $search . '%');
+        });
+    }
+
 }
