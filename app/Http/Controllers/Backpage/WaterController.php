@@ -111,7 +111,8 @@ class WaterController extends Controller
         // $data['lu_id'] = json_encode($request->lu_id);
         // Convert array to string before storing in the database
         // $data['lu_id'] = implode(',', $request->lu_id);
-        $data['lu_id'] = $request->lu_id;
+        // $data['lu_id'] = $request->lu_id;
+        $data['lu_id'] = array_map('intval', $data['lu_id']);
 
 
         Water::create($data);

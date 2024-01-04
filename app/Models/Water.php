@@ -14,7 +14,8 @@ class Water extends Model
     protected $fillable = ['regency_id', 'lu_id', 'lc_id', 'group_id', 'name', 'latitude', 'longitude', 'altitude', 'address', 'wide', 'aoi', 'status_area', 'ownership', 'photo', 'permanence', 'description', 'related_photo'];
 
     protected $casts = [
-        'lu_id' => 'array',
+        // 'lu_id' => 'array',
+        'lu_id' => 'json',
     ];
     public function regency()
     {
