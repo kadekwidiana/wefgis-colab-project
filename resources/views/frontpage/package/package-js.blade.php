@@ -37,3 +37,6 @@
 {{-- <script src="{{ asset('frontpage/js/geoserver/geoserver.js') }}"></script> --}}
 {{-- Data from Google Earth Engine JS --}}
 {{-- <script src="{{ asset('frontpage/js/gee/layer_gee.js') }}"></script> --}}
+
+{{-- script to use chart js  --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

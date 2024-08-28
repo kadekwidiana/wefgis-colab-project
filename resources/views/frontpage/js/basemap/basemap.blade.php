@@ -2,7 +2,7 @@
     // List Basemap
     const openStreetMap = L.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: "©OpenStreetMap Contributors",
+            attribution: "©OpenStreetMap Contributors|",
         }
     );
 
