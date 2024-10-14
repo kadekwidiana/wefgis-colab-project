@@ -9,6 +9,7 @@ use App\Http\Controllers\Backpage\SpatialController;
 use App\Http\Controllers\Backpage\WaterController;
 use App\Http\Controllers\Frontpage\MapController;
 use App\Http\Controllers\EndpointAPI\EndpointController;
+use App\Http\Controllers\GeoJsonStaticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,3 +74,6 @@ route::get('/loginn', function () {
 Route::get('/test', function () {
     return view('/dashboard');
 });
+
+// Endpoint to acces local geojson data 
+Route::get('/resources/layer/{file}', [GeoJsonStaticController::class, 'getFile']);

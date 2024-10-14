@@ -33,4 +33,6 @@
     @include('frontpage.js.layer.geoserver')
     {{-- logic js layer data area --}}
     @include('frontpage.js.layer.data-area')
+    {{-- logic js layer static layer --}}
+    @include('frontpage.js.layer.func-static-layer')
 @endsection
